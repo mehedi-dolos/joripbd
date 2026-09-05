@@ -2,10 +2,12 @@
 
 Corporate website for JOP, built to the website proposal dated 30 August 2026 (Option A).
 
+**Preview:** https://mehedi-dolos.github.io/joripbd/ (GitHub Pages, rebuilt on every push to `main`). Production goes to Hostinger at joripbd.com.
+
 - **Framework:** Astro 5 with Tailwind CSS 4. Static output, no server code.
 - **Content:** Markdown and JSON in `src/content` and `src/data`. Edited through Pages CMS (`.pages.yml`).
 - **Identity:** follows the GY6 Paperless brand system (https://www.gy6.io/work/paperless). Charcoal, paper, wine and slate; grain, hatch, terrain and folder-tab devices.
-- **Fonts:** the target face is Gilroy (commercial). Outfit ships as the free stand-in via fontsource for everything, including labels and numbers; Noto Sans Bengali for the Bengali name only. To switch to Gilroy: put the licensed woff2 files in `public/fonts/` and uncomment `src/styles/gilroy.css`. The token in `global.css` already lists Gilroy first.
+- **Fonts:** headings in Fanwood Text (Newsreader fallback), regular weight, −5.5% tracking, as on the Paperless site. Body, labels and figures in Outfit as the stand-in for Gilroy (commercial). Noto Sans Bengali for the Bengali name only. To switch to Gilroy: put the licensed woff2 files in `public/fonts/` and uncomment `src/styles/gilroy.css`. The token in `global.css` already lists Gilroy first.
 - **Form:** Web3Forms. Put the access key issued for info@joripbd.com in `src/data/site.json`.
 - **Hosting:** Hostinger. `public/.htaccess` carries the redirects from the old WordPress URLs.
 
@@ -15,6 +17,10 @@ Corporate website for JOP, built to the website proposal dated 30 August 2026 (O
 npm install
 npm run dev
 ```
+
+## Deploy
+
+Every push to `main` runs `.github/workflows/deploy.yml`: it builds with `SITE_BASE=/joripbd`, prefixes root-absolute links with `scripts/prefix-base.mjs`, and publishes `dist/` to the `gh-pages` branch, which GitHub Pages serves. For Hostinger, run a plain `npm run build` (no base) and upload `dist/`.
 
 ## Build
 
