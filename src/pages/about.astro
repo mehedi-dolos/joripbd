@@ -35,7 +35,7 @@ const milestones = [
         <figure class="folder mt-4 overflow-hidden bg-charcoal-3">
           <img src="/images/ataur-rahman.jpg" alt="Ataur Rahman, founder of Jorip O Paridarshan Company Limited" width="1200" height="1500" loading="lazy" class="block aspect-[4/5] w-full object-cover" />
           <figcaption class="px-5 py-4">
-            <span class="block font-display text-[15.5px] font-bold tracking-[-0.02em]">Ataur Rahman, 1941 to 2026</span>
+            <span class="block font-display text-[17.5px] tracking-[-0.05em]">Ataur Rahman, 1941 to 2026</span>
             <span class="mt-1 block label-mono text-white/55">Ekushey Padak 2001 · Independence Award 2021</span>
           </figcaption>
         </figure>
@@ -49,7 +49,7 @@ const milestones = [
         <ol class="mt-10 rounded-[12px] border border-white/15">
           {milestones.map((m, i) => (
             <li class={`grid gap-2 px-6 py-5 sm:grid-cols-12 sm:gap-6 ${i > 0 ? 'border-t border-dashed border-white/15' : ''}`}>
-              <span class="font-display text-[18.5px] font-bold leading-none tracking-[-0.02em] text-white sm:col-span-3">{m.year}</span>
+              <span class="font-display text-[20.5px] leading-none tracking-[-0.05em] text-white sm:col-span-3">{m.year}</span>
               <p class="text-[12.5px] leading-[1.6] text-white/65 sm:col-span-9">{m.text}</p>
             </li>
           ))}
@@ -66,7 +66,7 @@ const milestones = [
         {site.credentials.map((c) => (
           <div class="rounded-[12px] bg-white/70 p-7">
             <span class="tile h-12 w-12 bg-wine text-white"><Icon name="badge" size={19} /></span>
-            <h3 class="mt-5 font-display font-bold text-[18.5px] leading-[1.1] tracking-[-0.02em] text-charcoal">{c.title}</h3>
+            <h3 class="mt-5 font-display text-[20.5px] leading-[1.1] tracking-[-0.05em] text-charcoal">{c.title}</h3>
             <p class="mt-2 text-[12px] leading-[1.55] text-ink-2">{c.text}</p>
           </div>
         ))}
@@ -88,7 +88,7 @@ const milestones = [
         <ul class="mt-5 grid gap-3 sm:grid-cols-2">
           {advisers.map((a) => (
             <li class="rounded-[12px] border border-white/15 p-5">
-              <p class="font-display font-bold text-[18px] leading-tight tracking-[-0.02em] text-white">{a.data.name}</p>
+              <p class="font-display text-[20px] leading-tight tracking-[-0.05em] text-white">{a.data.name}</p>
               <p class="mt-1 label-mono-light">{a.data.role}</p>
             </li>
           ))}
@@ -101,7 +101,7 @@ const milestones = [
           ].map((f) => (
             <figure class="folder mt-3 overflow-hidden bg-charcoal-3 text-white">
               <img src={f.src} alt={f.alt} loading="lazy" width="1200" height="896" class="block aspect-[4/3] w-full object-cover" />
-              <figcaption class="px-4 py-3.5"><span class="font-display text-[14.5px] font-semibold tracking-[-0.02em]">{f.t}</span><span class="mt-0.5 block label-mono text-white/60">{f.sub}</span></figcaption>
+              <figcaption class="px-4 py-3.5"><span class="font-display text-[16px] tracking-[-0.05em]">{f.t}</span><span class="mt-0.5 block label-mono text-white/60">{f.sub}</span></figcaption>
             </figure>
           ))}
         </div>

@@ -37,7 +37,7 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.mapQuery
             {management.map((p) => (
               <li class="flex items-center justify-between gap-4 py-3">
                 <div class="min-w-0">
-                  <p class="truncate font-display font-semibold text-[15.5px] tracking-[-0.02em] text-charcoal">{p.data.name}</p>
+                  <p class="truncate font-display text-[17.5px] tracking-[-0.05em] text-charcoal">{p.data.name}</p>
                   <p class="label-mono-dark">{p.data.role}</p>
                 </div>
                 <a href={`tel:+88${p.data.phone!.replace(/\s/g, '')}`} class="shrink-0 font-mono text-[12px] tnum text-charcoal hover:text-wine">{p.data.phone}</a>

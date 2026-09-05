@@ -11,7 +11,7 @@ const bg = { wine: 'bg-wine', slate: 'bg-slate', navy: 'bg-navy', charcoal: 'bg-
     <span class="tile h-12 w-12 bg-white/12 text-white"><Icon name={icon} size={19} /></span>
     {index && <span class="label-mono text-white/55">{index}</span>}
   </div>
-  <h3 class="relative mt-6 font-display font-bold text-[20.5px] leading-[1.1] tracking-[-0.025em]">{title}</h3>
+  <h3 class="relative mt-6 font-display text-[23px] leading-[1.1] tracking-[-0.05em]">{title}</h3>
   <p class="relative mt-3 text-[12.5px] leading-[1.55] tracking-[-0.01em] text-white/78">{summary}</p>
   <ul class="relative mt-5 space-y-1.5 border-t border-white/15 pt-4 text-[11.5px] text-white/80">
     {receive.slice(0, 3).map((r) => <li class="flex gap-2"><Icon name="check" size={13} class="mt-[2.5px] shrink-0 text-white/70" /><span>{r}</span></li>)}

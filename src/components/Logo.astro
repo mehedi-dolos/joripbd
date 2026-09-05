@@ -5,6 +5,6 @@ interface Props { light?: boolean; class?: string }
 const { light = true, class: cls = '' } = Astro.props;
 ---
 <a href="/" class={`inline-flex flex-col leading-none no-underline ${cls}`} aria-label={site.name}>
-  <span class={`font-display text-[18px] font-bold tracking-[-0.03em] ${light ? 'text-white' : 'text-charcoal'}`}>Jorip O Paridarshan</span>
+  <span class={`font-display text-[20px] tracking-[-0.05em] ${light ? 'text-white' : 'text-charcoal'}`}>Jorip O Paridarshan</span>
   <span class={`mt-1 font-bengali text-[10px] font-semibold tracking-[0.01em] ${light ? 'text-white/55' : 'text-muted'}`}>{site.nameBengali}</span>
 </a>

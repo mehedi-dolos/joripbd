@@ -72,7 +72,7 @@ const steps = [
         <dl class="hero-stats absolute -bottom-8 right-4 hidden grid-cols-3 gap-px overflow-hidden border border-white/12 bg-white/12 shadow-[0_24px_60px_rgba(0,0,0,0.45)] md:grid lg:-right-10">
           {site.stats.slice(0, 3).map((st) => (
             <div class="bg-charcoal-2 px-6 py-5">
-              <dd class="font-display text-[25.5px] font-bold leading-none tracking-[-0.03em] tnum text-white">{st.value}</dd>
+              <dd class="font-sans font-bold text-[28.5px] leading-none tracking-[-0.03em] tnum text-white">{st.value}</dd>
               <dt class="mt-2 label-mono text-white/55">{st.label}</dt>
             </div>
           ))}
@@ -101,7 +101,7 @@ const steps = [
           <div class="flex gap-4 rounded-[12px] bg-white/70 p-5">
             <span class="tile h-10 w-10 bg-paper-2 text-slate"><Icon name="badge" size={17} /></span>
             <div>
-              <p class="font-display font-semibold text-[15.5px] leading-tight tracking-[-0.02em] text-charcoal">{c.title}</p>
+              <p class="font-display text-[17.5px] leading-tight tracking-[-0.05em] text-charcoal">{c.title}</p>
               <p class="mt-1 text-[11.5px] leading-[1.5] text-ink-2">{c.text}</p>
             </div>
           </div>
@@ -121,10 +121,10 @@ const steps = [
             <img src={s.img} alt={s.alt} width="1200" height="800" loading="lazy" class="relative block aspect-[3/2] w-full object-cover" />
             <div class="relative flex flex-1 flex-col p-7">
               <div class="flex items-baseline gap-2">
-                <span class="font-display text-[29px] font-bold leading-none tracking-[-0.03em] tnum">{s.stat}</span>
+                <span class="font-sans font-bold text-[32.5px] leading-none tracking-[-0.03em] tnum">{s.stat}</span>
                 <span class="label-mono text-white/65">{s.statLabel}</span>
               </div>
-              <h3 class="mt-5 font-display text-[20.5px] font-bold leading-[1.05] tracking-[-0.025em]">{s.title}</h3>
+              <h3 class="mt-5 font-display text-[23px] leading-[1.05] tracking-[-0.05em]">{s.title}</h3>
               <p class="mt-3 text-[12.5px] leading-[1.55] text-white/80">{s.text}</p>
               <ul class="mt-5 flex flex-wrap gap-2 border-t border-white/15 pt-5">
                 {s.items.map((it) => <li class="rounded-[8px] bg-white/12 px-3 py-1.5 text-[10.5px] font-semibold tracking-[-0.005em]">{it}</li>)}
@@ -156,7 +156,7 @@ const steps = [
         <div class="md:col-span-4">
           <figure class="folder mt-4 overflow-hidden bg-charcoal-3">
             <img src="/images/ataur-rahman.jpg" alt="Ataur Rahman, founder of Jorip O Paridarshan Company Limited" width="1200" height="1500" loading="lazy" class="block aspect-[4/5] w-full object-cover" />
-            <figcaption class="px-5 py-4"><span class="block font-display text-[14.5px] font-bold tracking-[-0.02em]">Ataur Rahman</span><span class="mt-0.5 block label-mono text-white/55">Founder · 1941 to 2026</span></figcaption>
+            <figcaption class="px-5 py-4"><span class="block font-display text-[16px] tracking-[-0.05em]">Ataur Rahman</span><span class="mt-0.5 block label-mono text-white/55">Founder · 1941 to 2026</span></figcaption>
           </figure>
         </div>
         <div class="md:col-span-8">

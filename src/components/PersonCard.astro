@@ -6,7 +6,7 @@ const { name, role, line, phone, photo, placeholder = false, tone = 'slate', lig
 <div class={`flex gap-5 rounded-[12px] p-5 ${light ? 'border border-white/15' : 'bg-white/70'}`}>
   <Avatar name={name} photo={photo} size={68} tone={tone} class="shrink-0" />
   <div class="min-w-0">
-    <h3 class={`font-display font-bold text-[18.5px] leading-[1.05] tracking-[-0.02em] ${light ? 'text-white' : 'text-charcoal'}`}>{name}</h3>
+    <h3 class={`font-display text-[20.5px] leading-[1.05] tracking-[-0.05em] ${light ? 'text-white' : 'text-charcoal'}`}>{name}</h3>
     <p class={`mt-1.5 ${light ? 'label-mono-light' : 'label-mono-dark'}`}>{placeholder ? 'Profile to follow' : role}</p>
     {line && <p class={`mt-2.5 text-[12.5px] leading-[1.55] tracking-[-0.01em] ${light ? 'text-white/65' : 'text-ink-2'}`}>{line}</p>}
     {phone && <p class={`mt-2.5 font-mono text-[11.5px] tnum ${light ? 'text-white/85' : 'text-charcoal'}`}><a href={`tel:+88${phone.replace(/\s/g, '')}`} class="hover:text-wine">{phone}</a></p>}

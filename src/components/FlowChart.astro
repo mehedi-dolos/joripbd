@@ -38,7 +38,7 @@ const tones = ['bg-wine', 'bg-slate', 'bg-navy', 'bg-slate-2', 'bg-wine-2'];
           <span class={`tile h-11 w-11 text-white ${tones[i % tones.length]}`}><Icon name={s.icon} size={17} /></span>
           <span class={label}>Step {String(i + 1).padStart(2, '0')}</span>
         </div>
-        <h3 class={`mt-5 font-display text-[18.5px] font-bold leading-[1.05] tracking-[-0.02em] ${title}`}>{s.title}</h3>
+        <h3 class={`mt-5 font-display text-[20.5px] leading-[1.05] tracking-[-0.05em] ${title}`}>{s.title}</h3>
         <p class={`mt-2.5 text-[12px] leading-[1.55] ${text}`}>{s.text}</p>
         <div class={`mt-5 flex items-center gap-2 border-t pt-4 ${light ? 'border-white/15' : 'border-charcoal/15'}`}>
           <Icon name="file" size={13} class={light ? 'text-white/60' : 'text-slate'} />

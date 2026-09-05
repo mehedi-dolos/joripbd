@@ -9,8 +9,10 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@fontsource-variable/newsreader": "^5.3.0",
     "@fontsource-variable/noto-sans-bengali": "^5.3.0",
     "@fontsource-variable/outfit": "^5.3.0",
+    "@fontsource/fanwood-text": "^5.3.0",
     "@tailwindcss/vite": "^4.1.0",
     "astro": "^5.10.0",
     "tailwindcss": "^4.1.0"

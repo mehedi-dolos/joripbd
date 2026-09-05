@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
 /* Self-hosted fonts.
-   Display and body: Gilroy is the target face. It is commercial, so Outfit
+   Headings: Fanwood Text (Newsreader as fallback), regular weight, tight
+   tracking, taken from the Paperless site's heading style.
+   Body: Gilroy is the target face. It is commercial, so Outfit
    (the closest free geometric) ships by default. To switch to Gilroy, drop the
    licensed woff2 files into public/fonts/ and uncomment the @font-face block
    in src/styles/gilroy.css; the token below picks it up first.
    Labels, numbers and the Bengali line follow the same family; Bengali
    glyphs come from Noto Sans Bengali. */
 @import "./gilroy.css";
+@import "@fontsource/fanwood-text/400.css";
+@import "@fontsource/fanwood-text/400-italic.css";
+@import "@fontsource-variable/newsreader/opsz.css";
 @import "@fontsource-variable/outfit";
 @import "@fontsource-variable/noto-sans-bengali";
 
@@ -34,7 +39,7 @@
   --color-line: #C3CCD4;
   --color-line-2: #D3DBE1;
 
-  --font-display: "Gilroy", "Outfit Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Fanwood Text", "Newsreader Variable", Georgia, "Times New Roman", serif;
   --font-sans: "Gilroy", "Outfit Variable", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Gilroy", "Outfit Variable", "Helvetica Neue", Arial, sans-serif;
   --font-bengali: "Gilroy", "Outfit Variable", "Noto Sans Bengali Variable", "Kalpurush", sans-serif;
@@ -57,11 +62,13 @@
     letter-spacing: -0.005em;
   }
   h1, h2, h3, h4 {
-    @apply font-display font-bold;
-    letter-spacing: -0.03em;
-    line-height: 1.06;
+    @apply font-display font-normal;
+    letter-spacing: -0.055em;
+    line-height: 1.1;
     text-wrap: balance;
   }
+  /* Anything set in the display face is regular weight with the same tracking */
+  .font-display { font-weight: 400; letter-spacing: -0.055em; }
   ::selection { background: #8C2B4C; color: #fff; }
   :focus-visible { outline: 2px solid #8C2B4C; outline-offset: 3px; }
 }
@@ -80,10 +87,10 @@
 @utility label-mono-dark  { @apply label-mono text-slate; }
 
 /* Display sizes from the board: 72 / 64 / 56 / 48 */
-@utility display-1 { @apply font-display font-bold leading-[1.0] tracking-[-0.04em] text-[35.5px] md:text-[49.5px] lg:text-[58px]; }
-@utility display-2 { @apply font-display font-bold leading-[1.02] tracking-[-0.035em] text-[29px] md:text-[37.5px] lg:text-[42.5px]; }
-@utility display-3 { @apply font-display font-bold leading-[1.05] tracking-[-0.03em] text-[24px] md:text-[29px]; }
-@utility display-4 { @apply font-display font-bold leading-[1.1] tracking-[-0.025em] text-[18.5px] md:text-[21px]; }
+@utility display-1 { @apply font-display font-normal leading-[1.02] tracking-[-0.055em] text-[40px] md:text-[56px] lg:text-[66px]; }
+@utility display-2 { @apply font-display font-normal leading-[1.05] tracking-[-0.055em] text-[33px] md:text-[42px] lg:text-[48px]; }
+@utility display-3 { @apply font-display font-normal leading-[1.08] tracking-[-0.05em] text-[27px] md:text-[33px]; }
+@utility display-4 { @apply font-display font-normal leading-[1.1] tracking-[-0.05em] text-[21px] md:text-[24px]; }
 
 /* First section of a page runs up under the fixed glass header */
 @utility hero-under {

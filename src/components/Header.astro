@@ -63,7 +63,7 @@ const isActive = (href: string) => path === href || (href !== '/' && path.starts
     <nav class="flex flex-col px-5 py-2" aria-label="Mobile">
       {nav.map((n) => (
         <div class="border-b border-white/10">
-          <a href={n.href} class={`block py-3.5 font-display text-[20.5px] font-bold tracking-[-0.02em] ${isActive(n.href) ? 'text-white' : 'text-white/70'}`}>{n.label}</a>
+          <a href={n.href} class={`block py-3.5 font-display text-[23px] tracking-[-0.05em] ${isActive(n.href) ? 'text-white' : 'text-white/70'}`}>{n.label}</a>
           {n.menu && (
             <ul class="-mt-1 mb-3 grid gap-1 pl-4">
               {services.map((s) => <li><a href={`/services/${s.id}/`} class="block py-1.5 text-[13px] text-white/65">{s.data.title}</a></li>)}
