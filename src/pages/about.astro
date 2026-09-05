@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+const advisers = (await getCollection('people')).filter((p) => p.data.group === 'adviser').sort((a, b) => a.data.order - b.data.order);
+const milestones = [
+  { year: '1966', text: 'Ataur Rahman joins SGS (Geneva) as Dhaka Office Manager, trained in quantity and quality inspection.' },
+  { year: '1975', text: 'Leaves SGS after nine years, later qualifying as an assessor, valuer and insurance loss adjuster.' },
+  { year: '1980s', text: 'Founds Jorip O Paridarshan Company Limited and takes the first appointments from banks and insurers as valuer, loss assessor and adjuster.' },
+  { year: 'Today', text: 'Thirty staff, enlisted with 42 banks and financial institutions and 5 insurers, licensed by IDRA.' },
+];
+---
+<Base title="About" description="Jorip O Paridarshan Company Limited is an IDRA-licensed firm of surveyors, valuers and loss assessors in Dhaka, appointed by banks and insurers for over thirty years.">
+  <PageHeader eyebrow="About the firm" title="An independent firm, in practice for over thirty years." image={{ src: '/images/hero-about.jpg', alt: 'An old filing cabinet with a drawer open, a brass stamp and a magnifying glass' }} intro="Jorip O Paridarshan Company Limited is a private limited company of surveyors, valuers and loss assessors based in Purana Paltan, Dhaka. Banks, financial institutions and insurance companies appoint us to value property, verify stock and assess insured losses." />
+
+  <!-- Independence -->
+  <section class="dotgrid bg-paper">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow="Independence" title="We report the value we find." />
+      <div class="prose-jop mx-auto mt-8 max-w-[64ch] text-center text-[14.5px] text-ink-2">
+        <p>Our task is to arrive at the present value of a property, or the true extent of a loss, without bias toward the party that appointed us or the party being assessed. We carry out every valuation, assessment and adjustment independently and without influence.</p>
+        <p>That is the whole reason an institution appoints an outside surveyor, and it is the standard we hold ourselves to. It is also the firm's slogan, unchanged since it was founded: <strong class="text-charcoal">we vouch for professionalism and honesty.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founder -->
+  <section class="grain bg-charcoal text-white">
+    <div class="container-site grid gap-12 py-20 md:grid-cols-12 md:py-28">
+      <div class="md:col-span-5">
+        <figure class="folder mt-4 overflow-hidden bg-charcoal-3">
+          <img src="/images/ataur-rahman.jpg" alt="Ataur Rahman, founder of Jorip O Paridarshan Company Limited" width="1200" height="1500" loading="lazy" class="block aspect-[4/5] w-full object-cover" />
+          <figcaption class="px-5 py-4">
+            <span class="block font-display text-[15.5px] font-bold tracking-[-0.02em]">Ataur Rahman, 1941 to 2026</span>
+            <span class="mt-1 block label-mono text-white/55">Ekushey Padak 2001 · Independence Award 2021</span>
+          </figcaption>
+        </figure>
+      </div>
+      <div class="md:col-span-7">
+        <SectionHeading eyebrow="In memoriam" title="Ataur Rahman, founder and Chief Surveyor" light align="left" />
+        <div class="prose-jop mt-6 text-[14.5px] text-white/75">
+          <p>Mr. Ataur Rahman served as Dhaka Office Manager of SGS (Geneva) from 1966 to 1975, where he was trained in quality and quantity inspection and later as an assessor, valuer and insurance loss adjuster. He founded JOP, led it as Managing Director and Chief Surveyor, and personally trained every surveyor and inspector the firm employed.</p>
+          <p>Bangladesh knew him as Monchosharothi, the charioteer of the stage: a founder of Nagorik Natya Sampradaya, director of more than thirty-five plays, and a recipient of the Ekushey Padak and the Independence Award. The same exactness he brought to the theatre he brought to every survey report that carried his signature.</p>
+        </div>
+        <ol class="mt-10 rounded-[12px] border border-white/15">
+          {milestones.map((m, i) => (
+            <li class={`grid gap-2 px-6 py-5 sm:grid-cols-12 sm:gap-6 ${i > 0 ? 'border-t border-dashed border-white/15' : ''}`}>
+              <span class="font-display text-[18.5px] font-bold leading-none tracking-[-0.02em] text-white sm:col-span-3">{m.year}</span>
+              <p class="text-[12.5px] leading-[1.6] text-white/65 sm:col-span-9">{m.text}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Licences -->
+  <section class="bg-paper">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow="Licences and registrations" title="Licensed, registered and enlisted." text="The documents an appointing institution asks for before adding a surveyor to its panel." />
+      <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {site.credentials.map((c) => (
+          <div class="rounded-[12px] bg-white/70 p-7">
+            <span class="tile h-12 w-12 bg-wine text-white"><Icon name="badge" size={19} /></span>
+            <h3 class="mt-5 font-display font-bold text-[18.5px] leading-[1.1] tracking-[-0.02em] text-charcoal">{c.title}</h3>
+            <p class="mt-2 text-[12px] leading-[1.55] text-ink-2">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- The firm today -->
+  <section class="grain bg-charcoal text-white">
+    <div class="container-site grid gap-12 py-20 md:grid-cols-12 md:py-28">
+      <div class="md:col-span-5">
+        <SectionHeading eyebrow="The firm today" title="Thirty people, one office, the whole country." light align="left" />
+      </div>
+      <div class="md:col-span-7">
+        <div class="prose-jop text-[14.5px] text-white/75">
+          <p>Thirty technical and administrative staff work from the corporate office at Paltan Tower. Field surveyors cover assignments across Bangladesh, from Cox's Bazar to Sreemangal, while the office handles documentation, report preparation and liaison with the appointing institution.</p>
+          <p>Two BUET engineers, both better known to the country as actors, have advised the firm on engineering valuation and plant assessment:</p>
+        </div>
+        <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+          {advisers.map((a) => (
+            <li class="rounded-[12px] border border-white/15 p-5">
+              <p class="font-display font-bold text-[18px] leading-tight tracking-[-0.02em] text-white">{a.data.name}</p>
+              <p class="mt-1 label-mono-light">{a.data.role}</p>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-8 grid gap-4 sm:grid-cols-3">
+          {[
+            { src: '/images/about-tower.jpg', alt: 'Paltan Tower on Purana Paltan Line, Dhaka, with rickshaws passing', t: 'Paltan Tower', sub: 'Purana Paltan, Dhaka' },
+            { src: '/images/about-site.jpg', alt: 'A surveyor behind a total station in front of a factory shed', t: 'On site', sub: 'Mawna, Gazipur' },
+            { src: '/images/about-office.jpg', alt: 'An office desk with stacked folders, a stamped report and a typewriter', t: 'Report preparation', sub: 'Corporate office' },
+          ].map((f) => (
+            <figure class="folder mt-3 overflow-hidden bg-charcoal-3 text-white">
+              <img src={f.src} alt={f.alt} loading="lazy" width="1200" height="896" class="block aspect-[4/3] w-full object-cover" />
+              <figcaption class="px-4 py-3.5"><span class="font-display text-[14.5px] font-semibold tracking-[-0.02em]">{f.t}</span><span class="mt-0.5 block label-mono text-white/60">{f.sub}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="mt-8 flex flex-wrap gap-6">
+          <a href="/management/" class="inline-flex items-center gap-2 label-mono text-white hover:text-slate-3">The Board and management <Icon name="arrow-right" size={12} /></a>
+          <a href="/team/" class="inline-flex items-center gap-2 label-mono text-white hover:text-slate-3">The survey team <Icon name="arrow-right" size={12} /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

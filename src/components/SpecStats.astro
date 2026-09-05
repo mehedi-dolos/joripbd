@@ -1,0 +1,15 @@
+---
+/* Four-up spec table: mono label above, serif figure below. */
+interface Stat { value: string; label: string }
+interface Props { stats: Stat[]; light?: boolean; class?: string }
+const { stats, light = true, class: cls = '' } = Astro.props;
+const border = light ? 'border-white/15' : 'border-charcoal/20';
+---
+<dl class={`grid overflow-hidden rounded-[12px] border sm:grid-cols-2 lg:grid-cols-4 ${border} ${cls}`}>
+  {stats.map((s, i) => (
+    <div class={`px-7 py-7 ${i > 0 ? `border-t border-dashed sm:border-t-0 sm:border-l ${border}` : ''} ${i === 2 ? 'sm:border-t sm:border-dashed lg:border-t-0' : ''} ${i === 3 ? 'sm:border-t sm:border-dashed lg:border-t-0' : ''}`}>
+      <dt class={light ? 'label-mono-light' : 'label-mono-dark'}>{s.label}</dt>
+      <dd class={`mt-3 font-display font-bold text-[39px] leading-none tracking-[-0.03em] tnum ${light ? 'text-white' : 'text-charcoal'}`}>{s.value}</dd>
+    </div>
+  ))}
+</dl>

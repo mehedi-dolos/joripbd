@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Terrain from '../components/Terrain.astro';
+---
+<Base title="Page not found">
+  <section class="grain hero-under bg-charcoal text-white">
+    <div class="container-site pt-24 pb-16 text-center md:pt-32">
+      <p class="label-mono-light">Error 404</p>
+      <h1 class="display-1 mx-auto mt-4 max-w-[14ch] text-white">That page is not on file.</h1>
+      <p class="mx-auto mt-6 max-w-[54ch] text-[14.5px] leading-[1.6] text-white/70">The address may have changed when the site was rebuilt. Try one of the pages below, or call the office.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <a href="/" class="btn-wine">Home <Icon name="arrow-right" size={14} /></a>
+        <a href="/services/" class="btn-ghost-light">Services</a>
+        <a href="/contact/" class="btn-ghost-light">Contact</a>
+      </div>
+    </div>
+    <Terrain id="nf" height={170} />
+  </section>
+</Base>

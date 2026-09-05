@@ -1,0 +1,49 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const year = new Date().getFullYear();
+---
+<footer class="grain bg-charcoal-2 text-white/70">
+  <div class="container-site grid gap-12 py-20 md:grid-cols-12">
+    <div class="md:col-span-5">
+      <Logo />
+      <p class="mt-6 max-w-[26ch] font-display font-bold text-[20.5px] leading-[1.15] tracking-[-0.025em] text-white">{site.slogan}.</p>
+      <p class="mt-4 max-w-[42ch] text-[12px] leading-relaxed text-white/55">{site.tagline}, appointed by banks, financial institutions and insurers across Bangladesh.</p>
+    </div>
+    <div class="md:col-span-2">
+      <h3 class="label-mono-light">Services</h3>
+      <ul class="mt-4 space-y-2.5 text-[13px] tracking-[-0.01em]">
+        {services.map((s) => <li><a href={`/services/${s.id}/`} class="hover:text-white">{s.data.title}</a></li>)}
+      </ul>
+    </div>
+    <div class="md:col-span-2">
+      <h3 class="label-mono-light">Company</h3>
+      <ul class="mt-4 space-y-2.5 text-[13px] tracking-[-0.01em]">
+        <li><a href="/about/" class="hover:text-white">About</a></li>
+        <li><a href="/clients/" class="hover:text-white">Clients</a></li>
+        <li><a href="/management/" class="hover:text-white">Management</a></li>
+        <li><a href="/team/" class="hover:text-white">Team</a></li>
+        <li><a href="/contact/" class="hover:text-white">Contact</a></li>
+        <li><a href={site.profilePdf} class="hover:text-white">Company profile (PDF)</a></li>
+      </ul>
+    </div>
+    <div class="md:col-span-3">
+      <h3 class="label-mono-light">Corporate office</h3>
+      <address class="mt-4 space-y-3 text-[12.5px] not-italic">
+        <p class="flex gap-3"><Icon name="map-pin" size={14} class="mt-0.5 shrink-0 text-slate-3" /><span>{site.address.line1}<br />{site.address.line2}<br />{site.address.city}, {site.address.country}</span></p>
+        <p class="flex gap-3"><Icon name="phone" size={14} class="mt-0.5 shrink-0 text-slate-3" /><a href={site.phoneHref} class="font-mono tnum hover:text-white">{site.phone}</a></p>
+        <p class="flex gap-3"><Icon name="mail" size={14} class="mt-0.5 shrink-0 text-slate-3" /><a href={`mailto:${site.email}`} class="hover:text-white">{site.email}</a></p>
+        <p class="flex gap-3"><Icon name="clock" size={14} class="mt-0.5 shrink-0 text-slate-3" /><span>{site.hours}</span></p>
+      </address>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="container-site flex flex-col gap-2 py-5 label-mono text-white/40 md:flex-row md:items-center md:justify-between">
+      <p>© {year} {site.name}. All rights reserved.</p>
+      <p>{site.licenceLine}</p>
+    </div>
+  </div>
+</footer>

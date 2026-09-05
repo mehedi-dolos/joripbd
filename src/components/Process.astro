@@ -1,0 +1,19 @@
+---
+/* Spec-table rows, from the Paperless typography board. */
+interface Step { title: string; text: string }
+interface Props { steps: Step[]; light?: boolean; class?: string }
+const { steps, light = true, class: cls = '' } = Astro.props;
+const border = light ? 'border-white/15' : 'border-charcoal/20';
+const label = light ? 'label-mono-light' : 'label-mono-dark';
+const title = light ? 'text-white' : 'text-charcoal';
+const text = light ? 'text-white/65' : 'text-ink-2';
+---
+<ol class={`rounded-[12px] border ${border} ${cls}`}>
+  {steps.map((s, i) => (
+    <li class={`grid gap-3 px-6 py-6 md:grid-cols-12 md:gap-8 md:px-8 ${i > 0 ? `border-t border-dashed ${border}` : ''}`}>
+      <span class={`${label} md:col-span-2`}>Step {String(i + 1).padStart(2, '0')}</span>
+      <h3 class={`font-display font-bold text-[19.5px] leading-[1.1] tracking-[-0.02em] md:col-span-4 ${title}`}>{s.title}</h3>
+      <p class={`text-[13px] leading-[1.6] tracking-[-0.01em] md:col-span-6 ${text}`}>{s.text}</p>
+    </li>
+  ))}
+</ol>

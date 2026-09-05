@@ -1,0 +1,211 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Terrain from '../components/Terrain.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import SpecStats from '../components/SpecStats.astro';
+import FlowChart from '../components/FlowChart.astro';
+import LogoWall from '../components/LogoWall.astro';
+import CtaBand from '../components/CtaBand.astro';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const featuredClients = (await getCollection('clients')).filter((c) => c.data.featured).map((c) => c.data);
+const tones = ['wine', 'slate', 'navy', 'slate'] as const;
+
+const serve = [
+  { img: '/images/serve-banks.jpg', alt: 'A bank counter with an open ledger, a rubber stamp, banknotes and a land deed', tone: 'bg-wine', stat: '42', statLabel: 'banks and FIs on panel', title: 'Banks and financial institutions', text: 'Collateral valuation before sanction, periodic revaluation, hypothecated stock verification and project progress monitoring.', items: ['Collateral valuation', 'Stock verification', 'Progress monitoring'] },
+  { img: '/images/serve-insurers.jpg', alt: 'An umbrella sheltering folders and a sealed policy, with a flame, a ship and a gear', tone: 'bg-slate', stat: '5', statLabel: 'insurance companies', title: 'Insurance companies', text: 'Survey and adjustment of fire, marine cargo, engineering and miscellaneous claims, from first site visit to final report.', items: ['Fire and allied perils', 'Marine cargo and transit', 'Engineering and miscellaneous'] },
+  { img: '/images/serve-corporates.jpg', alt: 'A model apartment block, a set of keys, a rolled plan and a signed deed', tone: 'bg-navy', stat: '30+', statLabel: 'years of reports accepted', title: 'Corporates, developers and individuals', text: 'Valuations for sale, merger, financial statements, court and arbitration, and reports a bank will accept.', items: ['Sale and merger', 'Financial statements', 'Court and arbitration'] },
+];
+
+const steps = [
+  { icon: 'mail', title: 'Appointment', text: 'The bank, insurer or client appoints us in writing, with the property schedule or the claim intimation.', doc: 'Appointment letter' },
+  { icon: 'ruler', title: 'Site inspection', text: 'Our surveyor visits with the borrower, insured or branch, measures, counts and photographs.', doc: 'Field notes and photographs' },
+  { icon: 'clipboard', title: 'Verification', text: 'Deeds, mutation, approved plans, invoices and market enquiry, checked against what was seen on site.', doc: 'Verified file' },
+  { icon: 'badge', title: 'Report', text: 'A signed report with the figure, its basis, photographs and site plan.', doc: 'Signed report' },
+  { icon: 'check', title: 'Clarification', text: 'We answer queries from the appointing institution until the file closes.', doc: 'File closed' },
+];
+---
+<Base title="Home">
+  <!-- Hero -->
+  <section class="hero hero-under relative overflow-hidden bg-charcoal text-white">
+    <div class="hero-plate pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div class="hero-plate-img absolute inset-0"></div>
+    </div>
+    <div class="hero-grain pointer-events-none absolute inset-0" aria-hidden="true"></div>
+    <div class="container-site relative z-10 pt-16 text-center md:pt-24">
+      <p class="hero-in label-mono-light" style="--i:0">{site.tagline} · Dhaka</p>
+      <h1 class="hero-in display-1 mx-auto mt-6 max-w-[34ch] text-white" style="--i:1">Valuations you can lend against.<br class="hidden lg:block" /> <span class="text-white/55">Assessments you can settle on.</span></h1>
+      <p class="hero-in mx-auto mt-7 max-w-[56ch] text-[14.5px] leading-[1.65] tracking-[-0.005em] text-white/70 md:text-[15.5px]" style="--i:2">Independent property valuation, surveying, loss assessment and insurance adjustment for Bangladesh's banks, financial institutions and insurers. Licensed by IDRA. In practice for over thirty years.</p>
+      <div class="hero-in mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row" style="--i:3">
+        <a href="/contact/" class="btn-wine">Request a service <Icon name="arrow-right" size={14} /></a>
+        <a href={site.profilePdf} class="btn-ghost-light"><Icon name="download" size={14} /> Company profile (PDF)</a>
+      </div>
+    </div>
+
+    <div class="container-site relative z-10 mt-16 md:mt-20">
+      <div class="hero-in relative mx-auto max-w-[884px]" style="--i:4">
+        <figure class="hero-card folder mt-4 overflow-hidden bg-charcoal-3 shadow-[0_40px_100px_rgba(0,0,0,0.55)]">
+          <img src="/images/hero-collage.jpg" srcset="/images/hero-collage-900.jpg 900w, /images/hero-collage.jpg 1800w" sizes="(min-width: 1100px) 1040px, 100vw" alt="A surveyor's theodolite on a tripod beside a folder of stamped valuation reports, a contour plan, a tape measure and a calculator" width="1800" height="1005" class="block aspect-[16/8] w-full object-cover" fetchpriority="high" />
+        </figure>
+
+        <!-- Rotating seal -->
+        <div class="seal absolute -left-6 -top-10 hidden md:block lg:-left-14 lg:-top-14" aria-hidden="true">
+          <svg viewBox="0 0 160 160" width="128" height="128">
+            <defs><path id="seal-circle" d="M80,80 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0" /></defs>
+            <circle cx="80" cy="80" r="79" fill="#8C2B4C" />
+            <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1" />
+            <g class="seal-text">
+              <text font-family="Outfit Variable, Outfit, sans-serif" font-size="11.5" font-weight="600" letter-spacing="2.2" fill="#fff">
+                <textPath href="#seal-circle" startOffset="0">LICENSED SURVEYORS · VALUERS · LOSS ASSESSORS · IDRA · </textPath>
+              </text>
+            </g>
+            <text x="80" y="76" text-anchor="middle" font-family="Outfit Variable, Outfit, sans-serif" font-size="30" font-weight="700" fill="#fff" letter-spacing="-1">30+</text>
+            <text x="80" y="94" text-anchor="middle" font-family="Outfit Variable, Outfit, sans-serif" font-size="9" font-weight="600" fill="rgba(255,255,255,0.8)" letter-spacing="1.5">YEARS</text>
+          </svg>
+        </div>
+
+        <!-- Floating figures -->
+        <dl class="hero-stats absolute -bottom-8 right-4 hidden grid-cols-3 gap-px overflow-hidden border border-white/12 bg-white/12 shadow-[0_24px_60px_rgba(0,0,0,0.45)] md:grid lg:-right-10">
+          {site.stats.slice(0, 3).map((st) => (
+            <div class="bg-charcoal-2 px-6 py-5">
+              <dd class="font-display text-[25.5px] font-bold leading-none tracking-[-0.03em] tnum text-white">{st.value}</dd>
+              <dt class="mt-2 label-mono text-white/55">{st.label}</dt>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+    <Terrain id="hero" height={272} class="relative z-[2] -mt-36 md:-mt-40" />
+  </section>
+
+  <!-- Services -->
+  <section class="dotgrid bg-paper">
+    <div class="container-site pt-20 md:pt-28">
+      <SectionHeading eyebrow="Services" title="Four services. One standard." text="Every report we sign is prepared the same way: a physical inspection by our own surveyor, verification against documents, and a figure we can defend to the institution that appointed us." />
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {services.map((s, i) => (
+          <ServiceCard href={`/services/${s.id}/`} title={s.data.title} icon={s.data.icon} summary={s.data.summary} receive={s.data.receive} tone={tones[i % tones.length]} index={`${String(i + 1).padStart(2, '0')} / 04`} />
+        ))}
+      </div>
+    </div>
+
+    <!-- Stats and credentials -->
+    <div class="container-site pt-20 pb-20 md:pt-24 md:pb-24">
+      <SpecStats stats={site.stats} light={false} />
+      <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {site.credentials.map((c) => (
+          <div class="flex gap-4 rounded-[12px] bg-white/70 p-5">
+            <span class="tile h-10 w-10 bg-paper-2 text-slate"><Icon name="badge" size={17} /></span>
+            <div>
+              <p class="font-display font-semibold text-[15.5px] leading-tight tracking-[-0.02em] text-charcoal">{c.title}</p>
+              <p class="mt-1 text-[11.5px] leading-[1.5] text-ink-2">{c.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we serve -->
+  <section class="grain bg-charcoal text-white">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow="Who we serve" title="Appointed by the institutions that carry the risk." light />
+      <div class="mt-14 grid gap-5 md:grid-cols-3">
+        {serve.map((s) => (
+          <article class={`folder mt-4 flex flex-col overflow-hidden text-white ${s.tone}`}>
+            <div class="hatch pointer-events-none absolute inset-0 rounded-[0_12px_12px_12px] opacity-70"></div>
+            <img src={s.img} alt={s.alt} width="1200" height="800" loading="lazy" class="relative block aspect-[3/2] w-full object-cover" />
+            <div class="relative flex flex-1 flex-col p-7">
+              <div class="flex items-baseline gap-2">
+                <span class="font-display text-[29px] font-bold leading-none tracking-[-0.03em] tnum">{s.stat}</span>
+                <span class="label-mono text-white/65">{s.statLabel}</span>
+              </div>
+              <h3 class="mt-5 font-display text-[20.5px] font-bold leading-[1.05] tracking-[-0.025em]">{s.title}</h3>
+              <p class="mt-3 text-[12.5px] leading-[1.55] text-white/80">{s.text}</p>
+              <ul class="mt-5 flex flex-wrap gap-2 border-t border-white/15 pt-5">
+                {s.items.map((it) => <li class="rounded-[8px] bg-white/12 px-3 py-1.5 text-[10.5px] font-semibold tracking-[-0.005em]">{it}</li>)}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="bg-paper">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow="How an assignment runs" title="From appointment letter to signed report." text="The sequence is the same for a collateral valuation and for a fire loss. What changes is who appoints us and what the report states." />
+      <FlowChart steps={steps} class="mt-14" />
+    </div>
+  </section>
+
+  <!-- Heritage: the billboard -->
+  <section class="grain bg-charcoal text-white">
+    <div class="container-site py-20 md:py-28">
+      <div class="hatch relative overflow-hidden rounded-[14px] bg-wine px-8 py-16 text-center md:px-16 md:py-24">
+        <p class="label-mono text-white/60">Our slogan</p>
+        <h2 class="display-2 mx-auto mt-4 max-w-[16ch] text-white">We vouch for professionalism and honesty.</h2>
+        <div class="mx-auto mt-8 h-px w-40 bg-white/60"></div>
+      </div>
+      <div class="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
+        <div class="md:col-span-4">
+          <figure class="folder mt-4 overflow-hidden bg-charcoal-3">
+            <img src="/images/ataur-rahman.jpg" alt="Ataur Rahman, founder of Jorip O Paridarshan Company Limited" width="1200" height="1500" loading="lazy" class="block aspect-[4/5] w-full object-cover" />
+            <figcaption class="px-5 py-4"><span class="block font-display text-[14.5px] font-bold tracking-[-0.02em]">Ataur Rahman</span><span class="mt-0.5 block label-mono text-white/55">Founder · 1941 to 2026</span></figcaption>
+          </figure>
+        </div>
+        <div class="md:col-span-8">
+          <SectionHeading eyebrow="Our history" title="Founded on the SGS standard of inspection." light align="left" />
+          <div class="prose-jop mt-6 text-[14px] text-white/70">
+            <p>JOP was founded by the late Mr. Ataur Rahman, who managed the Dhaka office of SGS of Geneva, the world's largest inspection company, from 1966 to 1975. He trained every surveyor in the firm personally.</p>
+            <p>That discipline of measuring, verifying and recording is still how we work. Thirty technical and administrative staff run assignments from the corporate office in Purana Paltan, with field surveyors covering the whole country.</p>
+            <a href="/about/" class="mt-6 inline-flex items-center gap-2 label-mono text-white hover:text-slate-3">Our history <Icon name="arrow-right" size={12} /></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section class="dotgrid bg-paper">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow="Clients" title="Enlisted with 42 banks and financial institutions." text="And with the country's leading general insurers. A selection of the institutions that appoint us." />
+      <div class="mt-14">
+        <LogoWall clients={featuredClients} />
+      </div>
+      <p class="mt-8 text-center"><a href="/clients/" class="inline-flex items-center gap-2 label-mono-dark hover:text-wine">All clients <Icon name="arrow-right" size={12} /></a></p>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .hero-plate { z-index: 0; background: #272624; }
+  .hero-plate-img {
+    background: url("/images/hero-aerial.jpg") center 40% / cover no-repeat;
+    transform-origin: 50% 40%;
+    animation: hero-drift 48s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @media (max-width: 800px) { .hero-plate-img { background-image: url("/images/hero-aerial-1000.jpg"); } }
+  @keyframes hero-drift { from { transform: scale(1.02) translate3d(0,0,0); } to { transform: scale(1.09) translate3d(-1.2%, -1.5%, 0); } }
+  .hero-grain { z-index: 1; background: url("/images/hero-grain.jpg") center / cover no-repeat; mix-blend-mode: soft-light; opacity: 0.6; }
+  .hero-card { transform: rotate(-1.4deg); transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+  .hero-card:hover { transform: rotate(0deg) translateY(-4px); }
+  .seal-text { transform-origin: 80px 80px; animation: seal-spin 28s linear infinite; }
+  @keyframes seal-spin { to { transform: rotate(360deg); } }
+  .hero-in { animation: hero-rise .9s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 120ms + 80ms); }
+  @keyframes hero-rise { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-in { animation: none; }
+    .seal-text { animation: none; }
+    .hero-card { transform: none; }
+    .hero-plate-img { animation: none; transform: none; }
+  }
+</style>

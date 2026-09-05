@@ -1,0 +1,59 @@
+{
+  "name": "Jorip O Paridarshan Company Limited",
+  "shortName": "JOP",
+  "nameBengali": "জরিপ ও পরিদর্শন কোম্পানী লিমিটেড",
+  "slogan": "We vouch for professionalism and honesty",
+  "tagline": "Licensed surveyors, valuers and loss assessors",
+  "description": "Independent property valuation, surveying, loss assessment and insurance adjustment for Bangladesh's banks, financial institutions and insurers. IDRA-licensed, in practice for over thirty years.",
+  "address": {
+    "line1": "Paltan Tower, 4th Floor, Suite 404",
+    "line2": "87 Purana Paltan Line",
+    "city": "Dhaka 1000",
+    "country": "Bangladesh"
+  },
+  "phone": "+880 2 49362956-8",
+  "phoneHref": "tel:+880249362956",
+  "email": "info@joripbd.com",
+  "hours": "Saturday to Thursday, 9:00 to 18:00",
+  "hoursShort": "Sat to Thu, 9:00 to 18:00",
+  "stats": [
+    {
+      "value": "30+",
+      "label": "Years in practice"
+    },
+    {
+      "value": "42",
+      "label": "Banks and financial institutions"
+    },
+    {
+      "value": "5",
+      "label": "Insurance companies"
+    },
+    {
+      "value": "30",
+      "label": "Surveyors, inspectors and staff"
+    }
+  ],
+  "credentials": [
+    {
+      "title": "IDRA licensed",
+      "text": "Licensed as surveyors and valuers by the Insurance Development and Regulatory Authority of Bangladesh."
+    },
+    {
+      "title": "Private limited company",
+      "text": "Incorporated in Bangladesh and run from one corporate office in Purana Paltan, Dhaka."
+    },
+    {
+      "title": "TIN and VAT registered",
+      "text": "A regular taxpayer. Every invoice carries the firm's TIN and VAT registration."
+    },
+    {
+      "title": "Enlisted surveyor and valuer",
+      "text": "On the panel of 42 banks and financial institutions and 5 insurance companies."
+    }
+  ],
+  "licenceLine": "Licensed by IDRA · Surveyors, valuers and loss assessors",
+  "profilePdf": "/company-profile.pdf",
+  "web3formsKey": "YOUR_WEB3FORMS_ACCESS_KEY",
+  "mapQuery": "Paltan Tower, 87 Purana Paltan Line, Dhaka 1000"
+}

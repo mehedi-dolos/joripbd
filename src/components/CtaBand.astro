@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import Terrain from './Terrain.astro';
+import site from '../data/site.json';
+interface Props { title?: string; text?: string }
+const {
+  title = 'Need a valuation, survey or loss assessment?',
+  text = 'Send the appointment letter or a short description and we will confirm the surveyor and the visit date within one working day.',
+} = Astro.props;
+---
+<section class="grain bg-charcoal text-white">
+  <div class="container-site pt-20 pb-14 text-center md:pt-28 md:pb-20">
+    <p class="label-mono-light">Appoint us</p>
+    <h2 class="display-2 mx-auto mt-4 max-w-[18ch] text-white">{title}</h2>
+    <p class="mx-auto mt-5 max-w-[56ch] text-[14.5px] leading-[1.6] tracking-[-0.015em] text-white/65">{text} Office hours: {site.hours}.</p>
+    <div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+      <a href="/contact/" class="btn-wine">Request a service <Icon name="arrow-right" size={14} /></a>
+      <a href={site.phoneHref} class="btn-ghost-light font-mono tnum"><Icon name="phone" size={14} />{site.phone}</a>
+    </div>
+  </div>
+  <Terrain id="cta" height={170} />
+</section>

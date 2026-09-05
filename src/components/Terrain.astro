@@ -1,0 +1,34 @@
+---
+/* Survey terrain: two hatched ridges (slate behind, wine in front) with a
+   levelling traverse drawn across them. From the Paperless landscape device,
+   turned into a surveyor's cross-section. */
+interface Props { id?: string; height?: number; class?: string; traverse?: boolean }
+const { id = 't', height = 220, class: cls = '', traverse = true } = Astro.props;
+---
+<svg class={`block w-full ${cls}`} style={`height:${height}px`} viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs>
+    <pattern id={`${id}-h`} patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(255,255,255,0.13)" stroke-width="1.6" />
+    </pattern>
+    <pattern id={`${id}-hd`} patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(0,0,0,0.16)" stroke-width="1.6" />
+    </pattern>
+  </defs>
+  <!-- back ridge: slate -->
+  <polygon points="0,168 110,128 240,150 380,92 520,138 660,70 820,126 980,98 1140,146 1290,104 1440,132 1440,260 0,260" fill="#4F6480" />
+  <polygon points="0,168 110,128 240,150 380,92 520,138 660,70 820,126 980,98 1140,146 1290,104 1440,132 1440,260 0,260" fill={`url(#${id}-h)`} />
+  <!-- front ridge: wine -->
+  <polygon points="0,226 150,182 300,206 470,156 610,196 770,140 910,190 1050,152 1200,206 1330,170 1440,192 1440,260 0,260" fill="#8C2B4C" />
+  <polygon points="0,226 150,182 300,206 470,156 610,196 770,140 910,190 1050,152 1200,206 1330,170 1440,192 1440,260 0,260" fill={`url(#${id}-hd)`} />
+  {traverse && (
+    <g stroke="rgba(255,255,255,0.55)" stroke-width="1" fill="none">
+      <polyline points="150,182 470,156 770,140 1050,152 1330,170" stroke-dasharray="4 5" />
+      {[[150,182],[470,156],[770,140],[1050,152],[1330,170]].map(([x, y]) => (
+        <g>
+          <circle cx={x} cy={y} r="4" fill="#272624" stroke="rgba(255,255,255,0.8)" />
+          <line x1={x} y1={y + 4} x2={x} y2={y + 16} stroke="rgba(255,255,255,0.35)" />
+        </g>
+      ))}
+    </g>
+  )}
+</svg>

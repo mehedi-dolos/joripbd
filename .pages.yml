@@ -1,0 +1,129 @@
+# Pages CMS configuration (app.pagescms.org)
+# Editors sign in with GitHub, pick a section, edit a form, save. Every save is a commit.
+media:
+  input: public
+  output: /
+content:
+  - name: services
+    label: Services
+    type: collection
+    path: src/content/services
+    format: yaml-frontmatter
+    view:
+      fields: [title, order]
+      sort: [order]
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: order, label: Display order, type: number, required: true }
+      - { name: icon, label: Icon, type: select, options: { values: [building, clipboard, flame, scale, ruler, shield] } }
+      - { name: promise, label: One-line promise, type: string, required: true }
+      - { name: summary, label: Card summary, type: string, required: true }
+      - { name: covers, label: What it covers, type: string, list: true }
+      - { name: receive, label: What you receive, type: string, list: true }
+      - { name: appointedBy, label: Appointed by, type: string, list: true }
+      - { name: turnaround, label: Turnaround note, type: string }
+      - { name: heroImage, label: Hero image, type: image }
+      - { name: heroAlt, label: Hero image description, type: string }
+      - name: steps
+        label: How it runs
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Step, type: string }
+          - { name: text, label: Description, type: string }
+      - { name: body, label: Introduction, type: rich-text }
+
+  - name: people
+    label: People
+    type: collection
+    path: src/content/people
+    format: yaml-frontmatter
+    view:
+      fields: [name, role, group, order]
+      sort: [group, order]
+    fields:
+      - { name: name, label: Name, type: string, required: true }
+      - { name: role, label: Designation, type: string, required: true }
+      - { name: group, label: Group, type: select, required: true, options: { values: [board, adviser, management, surveyor, staff] } }
+      - { name: order, label: Display order, type: number, required: true }
+      - { name: line, label: One-line profile, type: string }
+      - { name: phone, label: Direct line, type: string }
+      - { name: photo, label: Photograph, type: image }
+      - { name: placeholder, label: Awaiting details, type: boolean }
+      - { name: body, label: Profile, type: rich-text }
+
+  - name: clients
+    label: Clients
+    type: file
+    path: src/data/clients.json
+    fields:
+      - name: root
+        label: Clients
+        type: object
+        list: true
+        fields:
+          - { name: id, label: ID (letters and hyphens), type: string, required: true }
+          - { name: name, label: Name, type: string, required: true }
+          - { name: type, label: Type, type: select, required: true, options: { values: [bank, nbfi, insurer] } }
+          - { name: logo, label: Logo, type: image, required: true }
+          - { name: confirmed, label: Name confirmed, type: boolean, default: true }
+          - { name: featured, label: Show on homepage, type: boolean }
+
+  - name: assignments
+    label: Selected assignments
+    type: file
+    path: src/data/assignments.json
+    fields:
+      - name: root
+        label: Assignments
+        type: object
+        list: true
+        fields:
+          - { name: id, label: ID, type: string, required: true }
+          - { name: title, label: Property, type: string, required: true }
+          - { name: location, label: Location, type: string, required: true }
+          - { name: propertyType, label: Property type, type: string }
+          - { name: service, label: Service performed, type: string }
+          - { name: photo, label: Photograph, type: image }
+
+  - name: site
+    label: Site settings
+    type: file
+    path: src/data/site.json
+    fields:
+      - { name: name, label: Company name, type: string }
+      - { name: nameBengali, label: Company name (Bengali), type: string }
+      - { name: slogan, label: Slogan, type: string }
+      - { name: tagline, label: Tagline, type: string }
+      - { name: description, label: Site description, type: text }
+      - name: address
+        label: Address
+        type: object
+        fields:
+          - { name: line1, label: Line 1, type: string }
+          - { name: line2, label: Line 2, type: string }
+          - { name: city, label: City, type: string }
+          - { name: country, label: Country, type: string }
+      - { name: phone, label: Phone (display), type: string }
+      - { name: phoneHref, label: Phone (tel link), type: string }
+      - { name: email, label: Email, type: string }
+      - { name: hours, label: Office hours, type: string }
+      - { name: hoursShort, label: Office hours (short), type: string }
+      - name: stats
+        label: Headline numbers
+        type: object
+        list: true
+        fields:
+          - { name: value, label: Value, type: string }
+          - { name: label, label: Label, type: string }
+      - name: credentials
+        label: Credentials
+        type: object
+        list: true
+        fields:
+          - { name: title, label: Title, type: string }
+          - { name: text, label: Text, type: string }
+      - { name: licenceLine, label: Licence line (footer), type: string }
+      - { name: profilePdf, label: Company profile PDF, type: file }
+      - { name: web3formsKey, label: Web3Forms access key, type: string }
+      - { name: mapQuery, label: Map search text, type: string }

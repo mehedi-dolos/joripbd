@@ -1,0 +1,26 @@
+---
+/* Portrait tile. With no photo it draws a hatched silhouette bust in the
+   Paperless figure style, so a missing photograph still looks designed. */
+interface Props { name: string; photo?: string; size?: number; tone?: 'slate' | 'wine' | 'navy'; class?: string }
+const { name, photo, size = 96, tone = 'slate', class: cls = '' } = Astro.props;
+const fill = { slate: '#5A6F8A', wine: '#8C2B4C', navy: '#3A4468' }[tone];
+const id = `av-${Math.random().toString(36).slice(2, 8)}`;
+---
+<div class={`tile overflow-hidden ${cls}`} style={`width:${size}px;height:${size}px;background:#E8EEF2`}>
+  {photo ? (
+    <img src={photo} alt={name} class="h-full w-full object-cover" width={size} height={size} />
+  ) : (
+    <svg viewBox="0 0 96 96" width={size} height={size} aria-hidden="true">
+      <defs>
+        <pattern id={id} patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="5" stroke="rgba(255,255,255,0.22)" stroke-width="1.4" />
+        </pattern>
+      </defs>
+      <rect width="96" height="96" fill="#E8EEF2" />
+      <circle cx="48" cy="38" r="17" fill={fill} />
+      <path d="M14 96c2-22 16-32 34-32s32 10 34 32z" fill={fill} />
+      <circle cx="48" cy="38" r="17" fill={`url(#${id})`} />
+      <path d="M14 96c2-22 16-32 34-32s32 10 34 32z" fill={`url(#${id})`} />
+    </svg>
+  )}
+</div>

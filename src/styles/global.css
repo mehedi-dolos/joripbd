@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+/* Self-hosted fonts.
+   Display and body: Gilroy is the target face. It is commercial, so Outfit
+   (the closest free geometric) ships by default. To switch to Gilroy, drop the
+   licensed woff2 files into public/fonts/ and uncomment the @font-face block
+   in src/styles/gilroy.css; the token below picks it up first.
+   Labels, numbers and the Bengali line follow the same family; Bengali
+   glyphs come from Noto Sans Bengali. */
+@import "./gilroy.css";
+@import "@fontsource-variable/outfit";
+@import "@fontsource-variable/noto-sans-bengali";
+
+/* ---------------------------------------------------------------
+   Tokens, sampled from the Paperless identity boards
+   --------------------------------------------------------------- */
+@theme {
+  --color-charcoal: #272624;
+  --color-charcoal-2: #1F1E1C;
+  --color-charcoal-3: #33322F;
+  --color-paper: #DCE3E8;
+  --color-paper-2: #E8EEF2;
+  --color-wine: #8C2B4C;
+  --color-wine-2: #6E2039;
+  --color-wine-light: #C9587B;
+  --color-slate: #5A6F8A;
+  --color-slate-2: #415469;
+  --color-slate-3: #7E93AE;
+  --color-navy: #3A4468;
+  --color-ochre: #BFA24A;
+  --color-ink: #272624;
+  --color-ink-2: #4A4F57;
+  --color-muted: #737A85;
+  --color-line: #C3CCD4;
+  --color-line-2: #D3DBE1;
+
+  --font-display: "Gilroy", "Outfit Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Gilroy", "Outfit Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Gilroy", "Outfit Variable", "Helvetica Neue", Arial, sans-serif;
+  --font-bengali: "Gilroy", "Outfit Variable", "Noto Sans Bengali Variable", "Kalpurush", sans-serif;
+
+  --container-site: 1020px;
+  --header-h: 84px;
+  --spacing: 0.2125rem; /* 0.25rem × 0.85: the whole spacing scale runs at 85% */
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 14px;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-bold;
+    letter-spacing: -0.03em;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+  ::selection { background: #8C2B4C; color: #fff; }
+  :focus-visible { outline: 2px solid #8C2B4C; outline-offset: 3px; }
+}
+
+@utility container-site {
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+/* Small labels: the same family, medium weight, uppercase, tracked out */
+@utility label-mono {
+  @apply font-sans text-[10px] font-semibold uppercase leading-[1.5] tracking-[0.09em];
+}
+@utility label-mono-light { @apply label-mono text-slate-3; }
+@utility label-mono-dark  { @apply label-mono text-slate; }
+
+/* Display sizes from the board: 72 / 64 / 56 / 48 */
+@utility display-1 { @apply font-display font-bold leading-[1.0] tracking-[-0.04em] text-[35.5px] md:text-[49.5px] lg:text-[58px]; }
+@utility display-2 { @apply font-display font-bold leading-[1.02] tracking-[-0.035em] text-[29px] md:text-[37.5px] lg:text-[42.5px]; }
+@utility display-3 { @apply font-display font-bold leading-[1.05] tracking-[-0.03em] text-[24px] md:text-[29px]; }
+@utility display-4 { @apply font-display font-bold leading-[1.1] tracking-[-0.025em] text-[18.5px] md:text-[21px]; }
+
+/* First section of a page runs up under the fixed glass header */
+@utility hero-under {
+  margin-top: calc(var(--header-h) * -1);
+  padding-top: var(--header-h);
+}
+
+@utility tnum { font-variant-numeric: tabular-nums; letter-spacing: 0.01em; }
+
+/* Paper grain overlay. Parent needs position:relative. */
+@utility grain {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.11;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch' seed='7'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 700px 700px;
+  }
+  & > * { position: relative; z-index: 1; }
+}
+
+/* Diagonal hatch, used on wine and slate fills */
+@utility hatch {
+  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.11) 0 1px, transparent 1px 4px);
+}
+@utility hatch-dark {
+  background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.14) 0 1px, transparent 1px 4px);
+}
+
+/* Faint dot grid on paper sections, from the product interface */
+@utility dotgrid {
+  background-image: radial-gradient(rgba(39,38,36,0.16) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+/* Folder-tab card, from the "quick ask" cards */
+@utility folder {
+  position: relative;
+  border-radius: 0 12px 12px 12px;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -13px;
+    height: 14px;
+    width: 42%;
+    background: inherit;
+    background-image: none;
+    border-radius: 8px 10px 0 0;
+    clip-path: polygon(0 0, 86% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Rounded-square icon tile, from the app icons */
+@utility tile {
+  @apply inline-flex shrink-0 items-center justify-center rounded-[14px];
+}
+
+/* Buttons */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-none px-5 py-3 text-[13px] font-semibold leading-none tracking-[-0.015em] whitespace-nowrap transition-colors;
+}
+@utility btn-wine   { @apply btn bg-wine text-white hover:bg-wine-2; }
+@utility btn-paper  { @apply btn bg-paper-2 text-charcoal hover:bg-white; }
+@utility btn-ghost-light { @apply btn border border-white/25 text-white hover:border-white/60 hover:bg-white/5; }
+@utility btn-ghost-dark  { @apply btn border border-charcoal/25 text-charcoal hover:border-charcoal hover:bg-white/50; }
+
+@utility link { @apply underline decoration-1 underline-offset-[4px] hover:text-wine; }
+
+/* Long-form text */
+@utility prose-jop {
+  & p { @apply leading-[1.65] tracking-[-0.005em]; max-width: 62ch; }
+  & p + p { @apply mt-5; }
+  & ul { @apply mt-3 space-y-1.5 pl-5 list-disc; max-width: 64ch; }
+  & strong { @apply font-semibold; }
+}
+
+/* Logo wall tiles */
+@utility logo-tile {
+  @apply flex items-center justify-center rounded-[12px] bg-white/70 p-4 transition-colors;
+  & img {
+    @apply max-h-11 w-auto object-contain transition-[filter,opacity];
+    filter: grayscale(1);
+    opacity: 0.75;
+  }
+  &:hover { @apply bg-white; }
+  &:hover img { filter: grayscale(0); opacity: 1; }
+}

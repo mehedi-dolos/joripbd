@@ -1,0 +1,20 @@
+---
+/* Folder-tab card in the Paperless "quick ask" idiom. */
+import Icon from './Icon.astro';
+interface Props { href: string; title: string; icon: string; summary: string; receive: string[]; tone?: 'wine' | 'slate' | 'navy' | 'charcoal'; index?: string }
+const { href, title, icon, summary, receive, tone = 'wine', index } = Astro.props;
+const bg = { wine: 'bg-wine', slate: 'bg-slate', navy: 'bg-navy', charcoal: 'bg-charcoal-3' }[tone];
+---
+<a href={href} class={`folder group mt-4 flex flex-col p-7 text-white transition-transform hover:-translate-y-1 ${bg}`}>
+  <div class="hatch pointer-events-none absolute inset-0 rounded-[0_12px_12px_12px] opacity-70"></div>
+  <div class="relative flex items-center justify-between">
+    <span class="tile h-12 w-12 bg-white/12 text-white"><Icon name={icon} size={19} /></span>
+    {index && <span class="label-mono text-white/55">{index}</span>}
+  </div>
+  <h3 class="relative mt-6 font-display font-bold text-[20.5px] leading-[1.1] tracking-[-0.025em]">{title}</h3>
+  <p class="relative mt-3 text-[12.5px] leading-[1.55] tracking-[-0.01em] text-white/78">{summary}</p>
+  <ul class="relative mt-5 space-y-1.5 border-t border-white/15 pt-4 text-[11.5px] text-white/80">
+    {receive.slice(0, 3).map((r) => <li class="flex gap-2"><Icon name="check" size={13} class="mt-[2.5px] shrink-0 text-white/70" /><span>{r}</span></li>)}
+  </ul>
+  <span class="relative mt-auto inline-flex items-center gap-1.5 pt-6 label-mono text-white/80 group-hover:text-white">Read more <Icon name="arrow-right" size={12} /></span>
+</a>

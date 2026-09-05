@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import LogoWall from '../components/LogoWall.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { getCollection } from 'astro:content';
+const all = (await getCollection('clients')).map((c) => c.data);
+const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompare(b.name);
+const banks = all.filter((c) => c.type === 'bank' || c.type === 'nbfi').sort(byName);
+const insurers = all.filter((c) => c.type === 'insurer').sort(byName);
+const assignments = (await getCollection('assignments')).map((a) => a.data);
+const tones = ['bg-wine', 'bg-slate', 'bg-navy'];
+---
+<Base title="Clients" description="Jorip O Paridarshan is enlisted as surveyor and valuer with 42 banks and financial institutions and 5 insurance companies in Bangladesh.">
+  <PageHeader eyebrow="Clients" title="The institutions that appoint us." image={{ src: '/images/hero-clients.jpg', alt: 'A bank facade with columns, a vault door, an umbrella and bound files' }} intro="We are enlisted as surveyors and valuers with 42 banks and financial institutions and 5 insurance companies in Bangladesh. The logos below are clients who have confirmed we may display them." />
+
+  <section class="dotgrid bg-paper">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow={`Banks and financial institutions · ${banks.length} shown`} title="Panel valuer and surveyor." />
+      <div class="mt-12"><LogoWall clients={banks} /></div>
+    </div>
+  </section>
+
+  <section class="grain bg-charcoal text-white">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow={`Insurance companies · ${insurers.length} shown`} title="Licensed surveyor and loss adjuster." light />
+      <div class="mt-12"><LogoWall clients={insurers} cols="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7" /></div>
+    </div>
+  </section>
+
+  <section id="assignments" class="bg-paper">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow="Selected assignments" title="Properties we have valued and surveyed." text="A selection of larger assignments across hospitality, pharmaceuticals and manufacturing. The appointing institution is named where the client permits." />
+      <ul class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {assignments.map((a, i) => (
+          <li class={`folder mt-4 overflow-visible text-white ${tones[i % tones.length]}`}>
+            <div class="hatch pointer-events-none absolute inset-0 rounded-[0_12px_12px_12px] opacity-70"></div>
+            <img src={a.photo} alt={`${a.title}, ${a.location}`} loading="lazy" width="300" height="220" class="relative aspect-[3/2] w-full rounded-tr-[10px] object-cover" />
+            <div class="relative p-5">
+              <h3 class="font-display font-bold text-[18px] leading-[1.1] tracking-[-0.02em]">{a.title}</h3>
+              <p class="mt-1 label-mono text-white/60">{a.location}</p>
+              <dl class="mt-4 grid grid-cols-2 gap-3 border-t border-white/15 pt-4 text-[11.5px]">
+                <div><dt class="label-mono text-white/55">Property</dt><dd class="mt-1 text-white/90">{a.propertyType}</dd></div>
+                <div><dt class="label-mono text-white/55">Service</dt><dd class="mt-1 text-white/90">{a.service}</dd></div>
+              </dl>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

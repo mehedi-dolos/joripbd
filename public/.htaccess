@@ -1,0 +1,13 @@
+# Redirects from the previous WordPress site. Hostinger runs Apache, so these apply as-is.
+RewriteEngine On
+RewriteRule ^about-us/?$ /about/ [R=301,L]
+RewriteRule ^company-profile/?$ /about/ [R=301,L]
+RewriteRule ^photo-gallery/?$ /about/ [R=301,L]
+RewriteRule ^our-team/?$ /team/ [R=301,L]
+RewriteRule ^leadership/?$ /management/ [R=301,L]
+RewriteRule ^our-services/?$ /services/ [R=301,L]
+RewriteRule ^bank/?$ /clients/ [R=301,L]
+RewriteRule ^insurance-company/?$ /clients/ [R=301,L]
+RewriteRule ^completed-projects/?$ /clients/#assignments [R=301,NE,L]
+RewriteRule ^contact-us/?$ /contact/ [R=301,L]
+ErrorDocument 404 /404.html

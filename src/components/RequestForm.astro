@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const field = 'w-full rounded-[10px] border border-charcoal/15 bg-white px-3.5 py-3 text-[13px] tracking-[-0.01em] text-charcoal placeholder:text-muted/70 focus:border-slate focus:outline-none focus:ring-2 focus:ring-slate/25';
+const label = 'label-mono-dark block';
+---
+<form action="https://api.web3forms.com/submit" method="POST" class="grid gap-5 sm:grid-cols-2" id="request-form">
+  <input type="hidden" name="access_key" value={site.web3formsKey} />
+  <input type="hidden" name="subject" value="Request for service from joripbd.com" />
+  <input type="hidden" name="from_name" value="JOP website" />
+  <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <div>
+    <label for="name" class={label}>Your name</label>
+    <input id="name" name="name" type="text" required autocomplete="name" class={`mt-2 ${field}`} />
+  </div>
+  <div>
+    <label for="organisation" class={label}>Organisation</label>
+    <input id="organisation" name="organisation" type="text" autocomplete="organization" placeholder="Bank, insurer or company" class={`mt-2 ${field}`} />
+  </div>
+  <div>
+    <label for="email" class={label}>Email</label>
+    <input id="email" name="email" type="email" required autocomplete="email" class={`mt-2 ${field}`} />
+  </div>
+  <div>
+    <label for="phone" class={label}>Phone</label>
+    <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="01XXX XXXXXX" class={`mt-2 font-mono tnum ${field}`} />
+  </div>
+  <div>
+    <label for="service" class={label}>Service required</label>
+    <select id="service" name="service" required class={`mt-2 ${field}`}>
+      <option value="" disabled selected>Choose a service</option>
+      {services.map((s) => <option value={s.data.title}>{s.data.title}</option>)}
+      <option value="Other">Other or not sure</option>
+    </select>
+  </div>
+  <div>
+    <label for="location" class={label}>Location of property or loss</label>
+    <input id="location" name="location" type="text" placeholder="District, thana or address" class={`mt-2 ${field}`} />
+  </div>
+  <div class="sm:col-span-2">
+    <label for="message" class={label}>Message</label>
+    <textarea id="message" name="message" rows="5" required placeholder="Describe the property or claim, the appointing institution and any deadline." class={`mt-2 ${field}`}></textarea>
+  </div>
+  <div class="flex flex-col gap-4 sm:col-span-2 sm:flex-row sm:items-center sm:justify-between">
+    <p class="text-[11.5px] leading-snug text-muted">We reply within one working day. Appointment letters can be emailed to <a href={`mailto:${site.email}`} class="link text-charcoal">{site.email}</a>.</p>
+    <button type="submit" class="btn-wine shrink-0">Send request <Icon name="arrow-right" size={14} /></button>
+  </div>
+</form>

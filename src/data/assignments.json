@@ -1,0 +1,50 @@
+[
+  {
+    "id": "grand-sultan",
+    "title": "Hotel Grand Sultan",
+    "location": "Sreemangal, Moulvibazar",
+    "propertyType": "Resort hotel",
+    "service": "Property valuation",
+    "photo": "/assignments/grand-sultan-toned.jpg"
+  },
+  {
+    "id": "sea-pearl",
+    "title": "Hotel Sea Pearl",
+    "location": "Inani, Cox's Bazar",
+    "propertyType": "Beach resort",
+    "service": "Property valuation",
+    "photo": "/assignments/sea-pearl-toned.jpg"
+  },
+  {
+    "id": "incepta",
+    "title": "Incepta Pharmaceuticals",
+    "location": "Zirabo, Savar",
+    "propertyType": "Pharmaceutical plant",
+    "service": "Plant and machinery valuation",
+    "photo": "/assignments/incepta-toned.jpg"
+  },
+  {
+    "id": "nasir-glass",
+    "title": "Nasir Glassware & Tube Industries",
+    "location": "Mirzapur, Tangail",
+    "propertyType": "Manufacturing plant",
+    "service": "Plant and machinery valuation",
+    "photo": "/assignments/nasir-glass-toned.jpg"
+  },
+  {
+    "id": "queen-south",
+    "title": "Queen South",
+    "location": "Dhaka Export Processing Zone",
+    "propertyType": "Garment factory",
+    "service": "Property and stock survey",
+    "photo": "/assignments/queen-south-toned.jpg"
+  },
+  {
+    "id": "sq-celsius",
+    "title": "SQ Celsius",
+    "location": "Mawna, Gazipur",
+    "propertyType": "Apparel factory",
+    "service": "Property valuation",
+    "photo": "/assignments/sq-celsius-toned.jpg"
+  }
+]

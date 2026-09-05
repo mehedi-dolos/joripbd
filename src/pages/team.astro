@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Avatar from '../components/Avatar.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { getCollection } from 'astro:content';
+const people = await getCollection('people');
+const group = (g: string) => people.filter((p) => p.data.group === g).sort((a, b) => a.data.order - b.data.order);
+const surveyors = group('surveyor'), staff = group('staff');
+const senior = surveyors.filter((p) => p.data.role.startsWith('Senior'));
+const field = surveyors.filter((p) => !p.data.role.startsWith('Senior'));
+const tones = ['slate', 'wine', 'navy'] as const;
+const method = [
+  { title: 'Trained in-house', text: 'Every surveyor learned the firm’s method on the job, first from the founder and now from the senior surveyors.' },
+  { title: 'Never alone on a first visit', text: 'A new surveyor accompanies a senior colleague until the senior signs off on their measurements and photographs.' },
+  { title: 'Countrywide', text: 'Field surveyors travel from Dhaka to any district. The office prepares the report while the surveyor is still on site.' },
+];
+---
+<Base title="Team" description="The surveyors, inspectors and office team of Jorip O Paridarshan Company Limited.">
+  <PageHeader eyebrow="Team" title="Thirty people, trained in one method." image={{ src: '/images/hero-team.jpg', alt: 'Four surveyors walking along a ridge carrying a tripod, a staff and folders' }} intro="Surveyors and inspectors in the field, and an office team that turns their measurements into a report an institution can rely on." />
+
+  <!-- Method -->
+  <section class="dotgrid bg-paper">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow="How the team works" title="One method, from the founder down." />
+      <div class="mt-14 grid gap-4 md:grid-cols-3">
+        {method.map((m, i) => (
+          <div class={`folder hatch mt-4 p-7 text-white bg-${tones[i]}`}>
+            <span class="label-mono text-white/60">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="mt-4 font-display font-bold text-[19.5px] leading-[1.1] tracking-[-0.02em]">{m.title}</h3>
+            <p class="mt-3 text-[12.5px] leading-[1.55] text-white/80">{m.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Senior surveyors -->
+  <section class="grain bg-charcoal text-white">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow={`Senior surveyors · ${senior.length}`} title="Senior surveyors and inspectors." text="They lead site inspections, sign off the field work of the surveyors they train, and handle the larger industrial and hospitality assignments." light />
+      <ul class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {senior.map((p, i) => (
+          <li class="flex items-center gap-4 rounded-[12px] border border-white/15 p-4">
+            <Avatar name={p.data.name} size={54} tone={tones[i % 3]} class="shrink-0" />
+            <div class="min-w-0">
+              <h3 class="font-display font-bold text-[17px] leading-[1.05] tracking-[-0.02em] text-white">{p.data.name}</h3>
+              <p class="mt-1 label-mono-light">Senior surveyor-cum-inspector</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Surveyors -->
+  <section class="bg-paper">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow={`Surveyors and inspectors · ${field.length}`} title="The field team." text="Surveyors-cum-inspectors who carry out valuations, stock verifications and loss surveys across the country." />
+      <ul class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {field.map((p, i) => (
+          <li class="flex items-center gap-4 rounded-[12px] bg-white/70 p-4">
+            <Avatar name={p.data.name} size={48} tone={tones[(i + 1) % 3]} class="shrink-0" />
+            <div class="min-w-0">
+              <h3 class="font-display font-semibold text-[15.5px] leading-[1.05] tracking-[-0.02em] text-charcoal">{p.data.name}</h3>
+              <p class="mt-1 label-mono-dark">Surveyor-cum-inspector</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Office -->
+  <section class="grain bg-charcoal text-white">
+    <div class="container-site grid gap-12 py-20 md:grid-cols-12 md:py-28">
+      <div class="md:col-span-5">
+        <SectionHeading eyebrow={`Office · ${staff.length}`} title="The office team." text="Documentation, report preparation, accounts and the phone line. If you have called the office, you have spoken to one of them." light align="left" />
+      </div>
+      <ul class="rounded-[12px] border border-white/15 md:col-span-7">
+        {staff.map((p, i) => (
+          <li class={`flex items-center justify-between gap-4 px-5 py-3.5 ${i > 0 ? 'border-t border-dashed border-white/15' : ''}`}>
+            <span class="font-display font-bold text-[16px] tracking-[-0.02em] text-white">{p.data.name}</span>
+            <span class="label-mono-light text-right">{p.data.role}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-paper">
+    <div class="container-site py-14 text-center md:py-16">
+      <a href="/management/" class="inline-flex items-center gap-2 label-mono-dark hover:text-wine">The Board and management <Icon name="arrow-right" size={12} /></a>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

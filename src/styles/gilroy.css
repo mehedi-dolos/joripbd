@@ -1,0 +1,10 @@
+/* Gilroy is a commercial typeface by Radomir Tinkov (TypeType / MyFonts).
+   When JOP licenses it for the web, place the woff2 files in public/fonts/
+   and uncomment. Weights used on the site: 400, 500, 600, 700, 800.
+
+@font-face { font-family: "Gilroy"; font-weight: 400; font-style: normal; font-display: swap; src: url("/fonts/Gilroy-Regular.woff2") format("woff2"); }
+@font-face { font-family: "Gilroy"; font-weight: 500; font-style: normal; font-display: swap; src: url("/fonts/Gilroy-Medium.woff2") format("woff2"); }
+@font-face { font-family: "Gilroy"; font-weight: 600; font-style: normal; font-display: swap; src: url("/fonts/Gilroy-SemiBold.woff2") format("woff2"); }
+@font-face { font-family: "Gilroy"; font-weight: 700; font-style: normal; font-display: swap; src: url("/fonts/Gilroy-Bold.woff2") format("woff2"); }
+@font-face { font-family: "Gilroy"; font-weight: 800; font-style: normal; font-display: swap; src: url("/fonts/Gilroy-ExtraBold.woff2") format("woff2"); }
+*/

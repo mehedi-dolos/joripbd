@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import FlowChart from '../../components/FlowChart.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection } from 'astro:content';
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const tones = ['bg-wine', 'bg-slate', 'bg-navy', 'bg-slate-2'];
+const steps = [
+  { icon: 'mail', title: 'Appointment', text: 'The bank, insurer or client appoints us in writing.', doc: 'Appointment letter' },
+  { icon: 'ruler', title: 'Site inspection', text: 'Our surveyor visits with the borrower, insured or branch.', doc: 'Field notes and photographs' },
+  { icon: 'clipboard', title: 'Verification', text: 'Deeds, mutation, approved plans, invoices and market enquiry.', doc: 'Verified file' },
+  { icon: 'badge', title: 'Report', text: 'A signed report with the figure, its basis, photographs and site plan.', doc: 'Signed report' },
+  { icon: 'check', title: 'Clarification', text: 'We answer queries from the appointing institution until the file closes.', doc: 'File closed' },
+];
+---
+<Base title="Services" description="Property valuation, surveying and inspection, loss assessment and insurance adjustment by IDRA-licensed surveyors in Dhaka.">
+  <PageHeader eyebrow="Services" title="What we are appointed to do." image={{ src: '/images/hero-services.jpg', alt: 'A drafting table with a site plan, scale ruler, clipboard and folders' }} intro="Four service lines, each delivered by our own surveyors and signed off in the Paltan office. Choose a service to see what it covers, what you receive and how to appoint us." />
+
+  <section class="dotgrid bg-paper">
+    <div class="container-site py-16 md:py-24">
+      <ol class="grid gap-8">
+        {services.map((s, i) => (
+          <li class={`folder mt-4 grid gap-8 p-8 text-white md:grid-cols-12 md:p-10 ${tones[i % tones.length]}`}>
+            <div class="hatch pointer-events-none absolute inset-0 rounded-[0_12px_12px_12px] opacity-70"></div>
+            <div class="relative md:col-span-5">
+              <div class="flex items-center justify-between">
+                <span class="tile h-14 w-14 bg-white/12 text-white"><Icon name={s.data.icon} size={22} /></span>
+                <span class="label-mono text-white/55">{String(i + 1).padStart(2, '0')} / 04</span>
+              </div>
+              <h2 class="display-3 mt-6 text-white">{s.data.title}</h2>
+              <p class="mt-3 max-w-[40ch] text-[14.5px] leading-[1.5] tracking-[-0.015em] text-white/80">{s.data.promise}</p>
+              <a href={`/services/${s.id}/`} class="mt-6 inline-flex items-center gap-2 label-mono text-white hover:text-white/70">Full details <Icon name="arrow-right" size={12} /></a>
+            </div>
+            <div class="relative grid gap-6 border-t border-white/15 pt-6 sm:grid-cols-2 md:col-span-7 md:border-l md:border-t-0 md:pl-10 md:pt-0">
+              <div>
+                <h3 class="label-mono text-white/55">Covers</h3>
+                <ul class="mt-3 space-y-1.5 text-[12px] text-white/85">
+                  {s.data.covers.filter((c) => !c.startsWith('[')).slice(0, 4).map((c) => <li class="flex gap-2"><span class="mt-[8.5px] h-px w-3 shrink-0 bg-white/60"></span>{c}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h3 class="label-mono text-white/55">Appointed by</h3>
+                <ul class="mt-3 space-y-1.5 text-[12px] text-white/85">
+                  {s.data.appointedBy.map((c) => <li class="flex gap-2"><span class="mt-[8.5px] h-px w-3 shrink-0 bg-white/60"></span>{c}</li>)}
+                </ul>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="grain bg-charcoal text-white">
+    <div class="container-site py-20 md:py-28">
+      <SectionHeading eyebrow="How an assignment runs" title="The same sequence, whatever the service." light />
+      <FlowChart steps={steps} light class="mt-14" />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

@@ -1,0 +1,82 @@
+---
+/* "From appointment letter to signed report": a levelling traverse drawn across
+   five benchmarks, each with the document that exists at that stage. Animates
+   in on scroll; fully visible without JS or with reduced motion. */
+import Icon from './Icon.astro';
+interface Step { title: string; text: string; icon: string; doc: string }
+interface Props { steps: Step[]; light?: boolean; class?: string }
+const { steps, light = false, class: cls = '' } = Astro.props;
+const n = steps.length;
+const xs = steps.map((_, i) => 100 + (i * 1000) / (n - 1));           // 0..1200 viewBox
+const ys = [78, 34, 58, 26, 66].slice(0, n);
+const pts = xs.map((x, i) => `${x},${ys[i]}`).join(' ');
+const line = light ? 'rgba(255,255,255,0.7)' : 'rgba(39,38,36,0.55)';
+const card = light ? 'border-white/15' : 'bg-white/70';
+const title = light ? 'text-white' : 'text-charcoal';
+const text = light ? 'text-white/65' : 'text-ink-2';
+const label = light ? 'label-mono-light' : 'label-mono-dark';
+const tones = ['bg-wine', 'bg-slate', 'bg-navy', 'bg-slate-2', 'bg-wine-2'];
+---
+<div class={`flow ${cls}`} data-flow>
+  <svg class="flow-svg hidden lg:block" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
+    <defs><clipPath id="flow-reveal-clip"><rect class="flow-reveal" x="0" y="0" width="1200" height="110" /></clipPath></defs>
+    <g clip-path="url(#flow-reveal-clip)">
+      <polyline class="flow-line" points={pts} fill="none" stroke={line} stroke-width="1.5" stroke-dasharray="5 6" />
+    </g>
+    {xs.map((x, i) => (
+      <g class="flow-node" style={`transform-origin:${x}px ${ys[i]}px; transition-delay:${0.35 + i * 0.28}s`}>
+        <line x1={x} y1={ys[i]} x2={x} y2="110" stroke={line} stroke-width="1" opacity="0.5" />
+        <circle cx={x} cy={ys[i]} r="7" fill="#272624" stroke={light ? '#fff' : '#272624'} stroke-width="2" />
+        <circle cx={x} cy={ys[i]} r="2.5" fill={light ? '#fff' : '#DCE3E8'} />
+      </g>
+    ))}
+  </svg>
+  <ol class="flow-steps relative grid gap-4 lg:grid-cols-5">
+    {steps.map((s, i) => (
+      <li class={`flow-step relative rounded-[12px] p-6 ${card}`} style={`transition-delay:${0.45 + i * 0.28}s`}>
+        <div class="flex items-center justify-between">
+          <span class={`tile h-11 w-11 text-white ${tones[i % tones.length]}`}><Icon name={s.icon} size={17} /></span>
+          <span class={label}>Step {String(i + 1).padStart(2, '0')}</span>
+        </div>
+        <h3 class={`mt-5 font-display text-[18.5px] font-bold leading-[1.05] tracking-[-0.02em] ${title}`}>{s.title}</h3>
+        <p class={`mt-2.5 text-[12px] leading-[1.55] ${text}`}>{s.text}</p>
+        <div class={`mt-5 flex items-center gap-2 border-t pt-4 ${light ? 'border-white/15' : 'border-charcoal/15'}`}>
+          <Icon name="file" size={13} class={light ? 'text-white/60' : 'text-slate'} />
+          <span class={`text-[10.5px] font-semibold tracking-[-0.005em] ${light ? 'text-white/80' : 'text-charcoal'}`}>{s.doc}</span>
+        </div>
+      </li>
+    ))}
+  </ol>
+</div>
+
+<style>
+  .flow-svg { width: 100%; height: 94px; margin-bottom: -6px; overflow: visible; }
+  /* Mobile rail */
+  @media (max-width: 1023px) {
+    .flow-steps { padding-left: 28px; }
+    .flow-steps::before { content: ""; position: absolute; left: 9px; top: 12px; bottom: 12px; border-left: 1.5px dashed currentColor; opacity: .35; }
+    .flow-step::before { content: ""; position: absolute; left: -25px; top: 30px; width: 12px; height: 12px; border-radius: 999px; background: #272624; box-shadow: 0 0 0 2px currentColor; }
+  }
+  /* Animated states only when JS is running and motion is allowed */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(html.js) .flow[data-flow]:not(.is-in) .flow-reveal { width: 0; }
+    :global(html.js) .flow .flow-reveal { transition: width 1.8s cubic-bezier(.4,0,.2,1); }
+    :global(html.js) .flow[data-flow]:not(.is-in) .flow-node { transform: scale(0); opacity: 0; }
+    :global(html.js) .flow .flow-node { transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .4s; }
+    :global(html.js) .flow[data-flow]:not(.is-in) .flow-step { opacity: 0; transform: translateY(18px); }
+    :global(html.js) .flow .flow-step { transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+  }
+</style>
+
+<script>
+  document.documentElement.classList.add('js');
+  const flows = document.querySelectorAll<HTMLElement>('[data-flow]');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  flows.forEach((flow) => {
+    if (reduce || !('IntersectionObserver' in window)) { flow.classList.add('is-in'); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { flow.classList.add('is-in'); io.disconnect(); } });
+    }, { threshold: 0.25 });
+    io.observe(flow);
+  });
+</script>

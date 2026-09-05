@@ -1,0 +1,10 @@
+---
+interface Props { eyebrow?: string; title: string; text?: string; light?: boolean; align?: 'center' | 'left'; class?: string }
+const { eyebrow, title, text, light = false, align = 'center', class: cls = '' } = Astro.props;
+const center = align === 'center';
+---
+<div class={`${center ? 'mx-auto text-center' : ''} max-w-[64ch] ${cls}`}>
+  {eyebrow && <p class={light ? 'label-mono-light' : 'label-mono-dark'}>{eyebrow}</p>}
+  <h2 class={`display-2 mt-4 ${center ? 'mx-auto' : ''} max-w-[20ch] ${light ? 'text-white' : 'text-charcoal'}`}>{title}</h2>
+  {text && <p class={`mt-6 ${center ? 'mx-auto' : ''} max-w-[58ch] text-[14.5px] leading-[1.65] tracking-[-0.015em] ${light ? 'text-white/70' : 'text-ink-2'}`}>{text}</p>}
+</div>
