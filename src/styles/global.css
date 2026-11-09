@@ -178,13 +178,8 @@
 }
 
 /* Logo wall tiles */
+/* Logos always in their own colours, on a solid white tile, no hover change */
 @utility logo-tile {
-  @apply flex items-center justify-center rounded-[12px] bg-white/70 p-4 transition-colors;
-  & img {
-    @apply max-h-11 w-auto object-contain transition-[filter,opacity];
-    filter: grayscale(1);
-    opacity: 0.75;
-  }
-  &:hover { @apply bg-white; }
-  &:hover img { filter: grayscale(0); opacity: 1; }
+  @apply flex items-center justify-center rounded-[12px] bg-white p-4;
+  & img { @apply max-h-11 w-auto object-contain; }
 }
