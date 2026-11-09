@@ -10,12 +10,12 @@ const n = steps.length;
 const xs = steps.map((_, i) => 100 + (i * 1000) / (n - 1));           // 0..1200 viewBox
 const ys = [78, 34, 58, 26, 66].slice(0, n);
 const pts = xs.map((x, i) => `${x},${ys[i]}`).join(' ');
-const line = light ? 'rgba(255,255,255,0.7)' : 'rgba(39,38,36,0.55)';
+const line = light ? 'rgba(255,255,255,0.7)' : 'rgba(41,34,33,0.55)';
 const card = light ? 'border-white/15' : 'bg-white/70';
-const title = light ? 'text-white' : 'text-charcoal';
+const title = light ? 'text-white' : 'text-espresso';
 const text = light ? 'text-white/65' : 'text-ink-2';
 const label = light ? 'label-mono-light' : 'label-mono-dark';
-const tones = ['bg-wine', 'bg-slate', 'bg-navy', 'bg-slate-2', 'bg-wine-2'];
+const tones = ['bg-brown-deep', 'bg-brown', 'bg-navy', 'bg-brown-dark', 'bg-brown-deep'];
 ---
 <div class={`flow ${cls}`} data-flow>
   <svg class="flow-svg hidden lg:block" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true">
@@ -26,8 +26,8 @@ const tones = ['bg-wine', 'bg-slate', 'bg-navy', 'bg-slate-2', 'bg-wine-2'];
     {xs.map((x, i) => (
       <g class="flow-node" style={`transform-origin:${x}px ${ys[i]}px; transition-delay:${0.35 + i * 0.28}s`}>
         <line x1={x} y1={ys[i]} x2={x} y2="110" stroke={line} stroke-width="1" opacity="0.5" />
-        <circle cx={x} cy={ys[i]} r="7" fill="#272624" stroke={light ? '#fff' : '#272624'} stroke-width="2" />
-        <circle cx={x} cy={ys[i]} r="2.5" fill={light ? '#fff' : '#DCE3E8'} />
+        <circle cx={x} cy={ys[i]} r="7" fill="#292221" stroke={light ? '#fff' : '#292221'} stroke-width="2" />
+        <circle cx={x} cy={ys[i]} r="2.5" fill={light ? '#fff' : '#E9E1E0'} />
       </g>
     ))}
   </svg>
@@ -38,11 +38,11 @@ const tones = ['bg-wine', 'bg-slate', 'bg-navy', 'bg-slate-2', 'bg-wine-2'];
           <span class={`tile h-11 w-11 text-white ${tones[i % tones.length]}`}><Icon name={s.icon} size={17} /></span>
           <span class={label}>Step {String(i + 1).padStart(2, '0')}</span>
         </div>
-        <h3 class={`mt-5 font-display text-[20.5px] leading-[1.05] tracking-[-0.05em] ${title}`}>{s.title}</h3>
+        <h3 class={`mt-5 font-display text-[20.5px] leading-[1.05] tracking-[-0.01em] ${title}`}>{s.title}</h3>
         <p class={`mt-2.5 text-[12px] leading-[1.55] ${text}`}>{s.text}</p>
-        <div class={`mt-5 flex items-center gap-2 border-t pt-4 ${light ? 'border-white/15' : 'border-charcoal/15'}`}>
-          <Icon name="file" size={13} class={light ? 'text-white/60' : 'text-slate'} />
-          <span class={`text-[10.5px] font-semibold tracking-[-0.005em] ${light ? 'text-white/80' : 'text-charcoal'}`}>{s.doc}</span>
+        <div class={`mt-5 flex items-center gap-2 border-t pt-4 ${light ? 'border-white/15' : 'border-espresso/15'}`}>
+          <Icon name="file" size={13} class={light ? 'text-white/60' : 'text-navy'} />
+          <span class={`text-[10.5px] font-semibold tracking-[-0.005em] ${light ? 'text-white/80' : 'text-espresso'}`}>{s.doc}</span>
         </div>
       </li>
     ))}
@@ -55,7 +55,7 @@ const tones = ['bg-wine', 'bg-slate', 'bg-navy', 'bg-slate-2', 'bg-wine-2'];
   @media (max-width: 1023px) {
     .flow-steps { padding-left: 28px; }
     .flow-steps::before { content: ""; position: absolute; left: 9px; top: 12px; bottom: 12px; border-left: 1.5px dashed currentColor; opacity: .35; }
-    .flow-step::before { content: ""; position: absolute; left: -25px; top: 30px; width: 12px; height: 12px; border-radius: 999px; background: #272624; box-shadow: 0 0 0 2px currentColor; }
+    .flow-step::before { content: ""; position: absolute; left: -25px; top: 30px; width: 12px; height: 12px; border-radius: 999px; background: #292221; box-shadow: 0 0 0 2px currentColor; }
   }
   /* Animated states only when JS is running and motion is allowed */
   @media (prefers-reduced-motion: no-preference) {

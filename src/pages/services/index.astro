@@ -7,7 +7,7 @@ import CtaBand from '../../components/CtaBand.astro';
 import Icon from '../../components/Icon.astro';
 import { getCollection } from 'astro:content';
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
-const tones = ['bg-wine', 'bg-slate', 'bg-navy', 'bg-slate-2'];
+const tones = ['bg-brown-deep', 'bg-navy', 'bg-brown-dark', 'bg-espresso-3'];
 const steps = [
   { icon: 'mail', title: 'Appointment', text: 'The bank, insurer or client appoints us in writing.', doc: 'Appointment letter' },
   { icon: 'ruler', title: 'Site inspection', text: 'Our surveyor visits with the borrower, insured or branch.', doc: 'Field notes and photographs' },
@@ -54,7 +54,7 @@ const steps = [
     </div>
   </section>
 
-  <section class="grain bg-charcoal text-white">
+  <section class="grain bg-espresso text-white">
     <div class="container-site py-20 md:py-28">
       <SectionHeading eyebrow="How an assignment runs" title="The same sequence, whatever the service." light />
       <FlowChart steps={steps} light class="mt-14" />

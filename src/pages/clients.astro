@@ -10,7 +10,7 @@ const byName = (a: { name: string }, b: { name: string }) => a.name.localeCompar
 const banks = all.filter((c) => c.type === 'bank' || c.type === 'nbfi').sort(byName);
 const insurers = all.filter((c) => c.type === 'insurer').sort(byName);
 const assignments = (await getCollection('assignments')).map((a) => a.data);
-const tones = ['bg-wine', 'bg-slate', 'bg-navy'];
+const tones = ['bg-brown-deep', 'bg-navy', 'bg-brown-dark'];
 ---
 <Base title="Clients" description="Jorip O Paridarshan is enlisted as surveyor and valuer with 42 banks and financial institutions and 5 insurance companies in Bangladesh.">
   <PageHeader eyebrow="Clients" title="The institutions that appoint us." image={{ src: '/images/hero-clients.jpg', alt: 'A bank facade with columns, a vault door, an umbrella and bound files' }} intro="We are enlisted as surveyors and valuers with 42 banks and financial institutions and 5 insurance companies in Bangladesh. The logos below are clients who have confirmed we may display them." />
@@ -22,7 +22,7 @@ const tones = ['bg-wine', 'bg-slate', 'bg-navy'];
     </div>
   </section>
 
-  <section class="grain bg-charcoal text-white">
+  <section class="grain bg-espresso text-white">
     <div class="container-site py-20 md:py-28">
       <SectionHeading eyebrow={`Insurance companies · ${insurers.length} shown`} title="Licensed surveyor and loss adjuster." light />
       <div class="mt-12"><LogoWall clients={insurers} cols="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7" /></div>
@@ -38,7 +38,7 @@ const tones = ['bg-wine', 'bg-slate', 'bg-navy'];
             <div class="hatch pointer-events-none absolute inset-0 rounded-[0_12px_12px_12px] opacity-70"></div>
             <img src={a.photo} alt={`${a.title}, ${a.location}`} loading="lazy" width="300" height="220" class="relative aspect-[3/2] w-full rounded-tr-[10px] object-cover" />
             <div class="relative p-5">
-              <h3 class="font-display text-[20px] leading-[1.1] tracking-[-0.05em]">{a.title}</h3>
+              <h3 class="font-display text-[20px] leading-[1.1] tracking-[-0.01em]">{a.title}</h3>
               <p class="mt-1 label-mono text-white/60">{a.location}</p>
               <dl class="mt-4 grid grid-cols-2 gap-3 border-t border-white/15 pt-4 text-[11.5px]">
                 <div><dt class="label-mono text-white/55">Property</dt><dd class="mt-1 text-white/90">{a.propertyType}</dd></div>

@@ -13,7 +13,7 @@ const group = (g: string) => people.filter((p) => p.data.group === g).sort((a, b
 const board = group('board'), advisers = group('adviser'), management = group('management');
 const md = board.find((p) => p.id === 'managing-director')!;
 const { Content: MdBio } = await render(md);
-const tones = ['wine', 'slate', 'navy', 'slate'] as const;
+const tones = ['brown', 'navy', 'umber', 'brown'] as const;
 ---
 <Base title="Management" description="The Board of Directors, Managing Director, advisers and management team of Jorip O Paridarshan Company Limited.">
   <PageHeader eyebrow="Management" title="The people who sign the report." image={{ src: '/images/hero-management.jpg', alt: 'A stamped report lying open under a desk lamp, with a fountain pen and reading glasses' }} intro="A family-founded firm run by a professional management team. The Board sets policy and holds the licence. The management team runs every assignment from appointment letter to signed report." />
@@ -21,9 +21,9 @@ const tones = ['wine', 'slate', 'navy', 'slate'] as const;
   <!-- Managing Director feature -->
   <section class="dotgrid bg-paper">
     <div class="container-site py-20 md:py-28">
-      <div class="folder hatch mt-4 grid gap-10 bg-wine p-8 text-white md:grid-cols-12 md:p-12">
+      <div class="folder hatch mt-4 grid gap-10 bg-brown-deep p-8 text-white md:grid-cols-12 md:p-12">
         <div class="relative md:col-span-4">
-          <Avatar name={md.data.name} photo={md.data.photo} size={187} tone="navy" class="max-w-full" />
+          <Avatar name={md.data.name} photo={md.data.photo} size={187} tone="umber" class="max-w-full" />
         </div>
         <div class="relative md:col-span-8">
           <p class="label-mono text-white/60">Profile to follow</p>
@@ -40,7 +40,7 @@ const tones = ['wine', 'slate', 'navy', 'slate'] as const;
   </section>
 
   <!-- Board -->
-  <section class="grain bg-charcoal text-white">
+  <section class="grain bg-espresso text-white">
     <div class="container-site py-20 md:py-28">
       <SectionHeading eyebrow="Board of Directors" title="Ownership and direction." text="The Board holds the company, appoints the Managing Director and reviews the firm's independence on every panel it sits on." light />
       <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -61,20 +61,20 @@ const tones = ['wine', 'slate', 'navy', 'slate'] as const;
       </div>
       <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:max-w-[697px]">
         {advisers.map((p, i) => (
-          <PortraitCard name={p.data.name} role={p.data.role} line={p.data.line} photo={p.data.photo} tone={i ? 'navy' : 'slate'} note={p.data.photo ? undefined : 'Photograph to follow'} />
+          <PortraitCard name={p.data.name} role={p.data.role} line={p.data.line} photo={p.data.photo} tone={i ? 'umber' : 'navy'} note={p.data.photo ? undefined : 'Photograph to follow'} />
         ))}
       </div>
     </div>
   </section>
 
   <!-- Management team -->
-  <section class="grain bg-charcoal text-white">
+  <section class="grain bg-espresso text-white">
     <div class="container-site py-20 md:py-28">
       <SectionHeading eyebrow="Management team" title="Who runs your assignment." text="Direct lines are listed so an appointing branch or claims desk reaches the right person without a switchboard." light />
       <div class="mt-14 grid gap-4 md:grid-cols-2">
         {management.map((p, i) => <PersonCard name={p.data.name} role={p.data.role} line={p.data.line} phone={p.data.phone} tone={tones[(i + 1) % tones.length]} light />)}
       </div>
-      <p class="mt-10 text-center"><a href="/team/" class="inline-flex items-center gap-2 label-mono text-white hover:text-slate-3">Meet the survey team <Icon name="arrow-right" size={12} /></a></p>
+      <p class="mt-10 text-center"><a href="/team/" class="inline-flex items-center gap-2 label-mono text-white hover:text-brown-light">Meet the survey team <Icon name="arrow-right" size={12} /></a></p>
     </div>
   </section>
 

@@ -13,12 +13,12 @@ import { getCollection } from 'astro:content';
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const featuredClients = (await getCollection('clients')).filter((c) => c.data.featured).map((c) => c.data);
-const tones = ['wine', 'slate', 'navy', 'slate'] as const;
+const tones = ['brown', 'navy', 'umber', 'espresso'] as const;
 
 const serve = [
-  { img: '/images/serve-banks.jpg', alt: 'A bank counter with an open ledger, a rubber stamp, banknotes and a land deed', tone: 'bg-wine', stat: '42', statLabel: 'banks and FIs on panel', title: 'Banks and financial institutions', text: 'Collateral valuation before sanction, periodic revaluation, hypothecated stock verification and project progress monitoring.', items: ['Collateral valuation', 'Stock verification', 'Progress monitoring'] },
-  { img: '/images/serve-insurers.jpg', alt: 'An umbrella sheltering folders and a sealed policy, with a flame, a ship and a gear', tone: 'bg-slate', stat: '5', statLabel: 'insurance companies', title: 'Insurance companies', text: 'Survey and adjustment of fire, marine cargo, engineering and miscellaneous claims, from first site visit to final report.', items: ['Fire and allied perils', 'Marine cargo and transit', 'Engineering and miscellaneous'] },
-  { img: '/images/serve-corporates.jpg', alt: 'A model apartment block, a set of keys, a rolled plan and a signed deed', tone: 'bg-navy', stat: '30+', statLabel: 'years of reports accepted', title: 'Corporates, developers and individuals', text: 'Valuations for sale, merger, financial statements, court and arbitration, and reports a bank will accept.', items: ['Sale and merger', 'Financial statements', 'Court and arbitration'] },
+  { img: '/images/serve-banks.jpg', alt: 'A bank counter with an open ledger, a rubber stamp, banknotes and a land deed', tone: 'bg-brown-deep', stat: '42', statLabel: 'banks and FIs on panel', title: 'Banks and financial institutions', text: 'Collateral valuation before sanction, periodic revaluation, hypothecated stock verification and project progress monitoring.', items: ['Collateral valuation', 'Stock verification', 'Progress monitoring'] },
+  { img: '/images/serve-insurers.jpg', alt: 'An umbrella sheltering folders and a sealed policy, with a flame, a ship and a gear', tone: 'bg-navy', stat: '5', statLabel: 'insurance companies', title: 'Insurance companies', text: 'Survey and adjustment of fire, marine cargo, engineering and miscellaneous claims, from first site visit to final report.', items: ['Fire and allied perils', 'Marine cargo and transit', 'Engineering and miscellaneous'] },
+  { img: '/images/serve-corporates.jpg', alt: 'A model apartment block, a set of keys, a rolled plan and a signed deed', tone: 'bg-brown-dark', stat: '30+', statLabel: 'years of reports accepted', title: 'Corporates, developers and individuals', text: 'Valuations for sale, merger, financial statements, court and arbitration, and reports a bank will accept.', items: ['Sale and merger', 'Financial statements', 'Court and arbitration'] },
 ];
 
 const steps = [
@@ -31,7 +31,7 @@ const steps = [
 ---
 <Base title="Home">
   <!-- Hero -->
-  <section class="hero hero-under relative overflow-hidden bg-charcoal text-white">
+  <section class="hero hero-under relative overflow-hidden bg-espresso text-white">
     <div class="hero-plate pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <div class="hero-plate-img absolute inset-0"></div>
     </div>
@@ -41,14 +41,14 @@ const steps = [
       <h1 class="hero-in display-1 mx-auto mt-6 max-w-[34ch] text-white" style="--i:1">Valuations you can lend against.<br class="hidden lg:block" /> <span class="text-white/55">Assessments you can settle on.</span></h1>
       <p class="hero-in mx-auto mt-7 max-w-[56ch] text-[14.5px] leading-[1.65] tracking-[-0.005em] text-white/70 md:text-[15.5px]" style="--i:2">Independent property valuation, surveying, loss assessment and insurance adjustment for Bangladesh's banks, financial institutions and insurers. Licensed by IDRA. In practice for over thirty years.</p>
       <div class="hero-in mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row" style="--i:3">
-        <a href="/contact/" class="btn-wine">Request a service <Icon name="arrow-right" size={14} /></a>
+        <a href="/contact/" class="btn-brown">Request a service <Icon name="arrow-right" size={14} /></a>
         <a href={site.profilePdf} class="btn-ghost-light"><Icon name="download" size={14} /> Company profile (PDF)</a>
       </div>
     </div>
 
     <div class="container-site relative z-10 mt-16 md:mt-20">
       <div class="hero-in relative mx-auto max-w-[884px]" style="--i:4">
-        <figure class="hero-card folder mt-4 overflow-hidden bg-charcoal-3 shadow-[0_40px_100px_rgba(0,0,0,0.55)]">
+        <figure class="hero-card folder mt-4 overflow-hidden bg-espresso-3 shadow-[0_40px_100px_rgba(0,0,0,0.55)]">
           <img src="/images/hero-collage.jpg" srcset="/images/hero-collage-900.jpg 900w, /images/hero-collage.jpg 1800w" sizes="(min-width: 1100px) 1040px, 100vw" alt="A surveyor's theodolite on a tripod beside a folder of stamped valuation reports, a contour plan, a tape measure and a calculator" width="1800" height="1005" class="block aspect-[16/8] w-full object-cover" fetchpriority="high" />
         </figure>
 
@@ -56,7 +56,7 @@ const steps = [
         <div class="seal absolute -left-6 -top-10 hidden md:block lg:-left-14 lg:-top-14" aria-hidden="true">
           <svg viewBox="0 0 160 160" width="128" height="128">
             <defs><path id="seal-circle" d="M80,80 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0" /></defs>
-            <circle cx="80" cy="80" r="79" fill="#8C2B4C" />
+            <circle cx="80" cy="80" r="79" fill="#795149" />
             <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1" />
             <g class="seal-text">
               <text font-family="Outfit Variable, Outfit, sans-serif" font-size="11.5" font-weight="600" letter-spacing="2.2" fill="#fff">
@@ -71,7 +71,7 @@ const steps = [
         <!-- Floating figures -->
         <dl class="hero-stats absolute -bottom-8 right-4 hidden grid-cols-3 gap-px overflow-hidden border border-white/12 bg-white/12 shadow-[0_24px_60px_rgba(0,0,0,0.45)] md:grid lg:-right-10">
           {site.stats.slice(0, 3).map((st) => (
-            <div class="bg-charcoal-2 px-6 py-5">
+            <div class="bg-espresso-2 px-6 py-5">
               <dd class="font-sans font-bold text-[28.5px] leading-none tracking-[-0.03em] tnum text-white">{st.value}</dd>
               <dt class="mt-2 label-mono text-white/55">{st.label}</dt>
             </div>
@@ -99,9 +99,9 @@ const steps = [
       <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {site.credentials.map((c) => (
           <div class="flex gap-4 rounded-[12px] bg-white/70 p-5">
-            <span class="tile h-10 w-10 bg-paper-2 text-slate"><Icon name="badge" size={17} /></span>
+            <span class="tile h-10 w-10 bg-paper-2 text-navy"><Icon name="badge" size={17} /></span>
             <div>
-              <p class="font-display text-[17.5px] leading-tight tracking-[-0.05em] text-charcoal">{c.title}</p>
+              <p class="font-display text-[17.5px] leading-tight tracking-[-0.01em] text-espresso">{c.title}</p>
               <p class="mt-1 text-[11.5px] leading-[1.5] text-ink-2">{c.text}</p>
             </div>
           </div>
@@ -111,7 +111,7 @@ const steps = [
   </section>
 
   <!-- Who we serve -->
-  <section class="grain bg-charcoal text-white">
+  <section class="grain bg-espresso text-white">
     <div class="container-site py-20 md:py-28">
       <SectionHeading eyebrow="Who we serve" title="Appointed by the institutions that carry the risk." light />
       <div class="mt-14 grid gap-5 md:grid-cols-3">
@@ -124,7 +124,7 @@ const steps = [
                 <span class="font-sans font-bold text-[32.5px] leading-none tracking-[-0.03em] tnum">{s.stat}</span>
                 <span class="label-mono text-white/65">{s.statLabel}</span>
               </div>
-              <h3 class="mt-5 font-display text-[23px] leading-[1.05] tracking-[-0.05em]">{s.title}</h3>
+              <h3 class="mt-5 font-display text-[23px] leading-[1.05] tracking-[-0.01em]">{s.title}</h3>
               <p class="mt-3 text-[12.5px] leading-[1.55] text-white/80">{s.text}</p>
               <ul class="mt-5 flex flex-wrap gap-2 border-t border-white/15 pt-5">
                 {s.items.map((it) => <li class="rounded-[8px] bg-white/12 px-3 py-1.5 text-[10.5px] font-semibold tracking-[-0.005em]">{it}</li>)}
@@ -145,18 +145,18 @@ const steps = [
   </section>
 
   <!-- Heritage: the billboard -->
-  <section class="grain bg-charcoal text-white">
+  <section class="grain bg-espresso text-white">
     <div class="container-site py-20 md:py-28">
-      <div class="hatch relative overflow-hidden rounded-[14px] bg-wine px-8 py-16 text-center md:px-16 md:py-24">
+      <div class="hatch relative overflow-hidden rounded-[14px] bg-brown-deep px-8 py-16 text-center md:px-16 md:py-24">
         <p class="label-mono text-white/60">Our slogan</p>
         <h2 class="display-2 mx-auto mt-4 max-w-[16ch] text-white">We vouch for professionalism and honesty.</h2>
         <div class="mx-auto mt-8 h-px w-40 bg-white/60"></div>
       </div>
       <div class="mt-14 grid gap-10 md:grid-cols-12 md:items-center">
         <div class="md:col-span-4">
-          <figure class="folder mt-4 overflow-hidden bg-charcoal-3">
+          <figure class="folder mt-4 overflow-hidden bg-espresso-3">
             <img src="/images/ataur-rahman.jpg" alt="Ataur Rahman, founder of Jorip O Paridarshan Company Limited" width="1200" height="1500" loading="lazy" class="block aspect-[4/5] w-full object-cover" />
-            <figcaption class="px-5 py-4"><span class="block font-display text-[16px] tracking-[-0.05em]">Ataur Rahman</span><span class="mt-0.5 block label-mono text-white/55">Founder · 1941 to 2026</span></figcaption>
+            <figcaption class="px-5 py-4"><span class="block font-display text-[16px] tracking-[-0.01em]">Ataur Rahman</span><span class="mt-0.5 block label-mono text-white/55">Founder · 1941 to 2026</span></figcaption>
           </figure>
         </div>
         <div class="md:col-span-8">
@@ -164,7 +164,7 @@ const steps = [
           <div class="prose-jop mt-6 text-[14px] text-white/70">
             <p>JOP was founded by the late Mr. Ataur Rahman, who managed the Dhaka office of SGS of Geneva, the world's largest inspection company, from 1966 to 1975. He trained every surveyor in the firm personally.</p>
             <p>That discipline of measuring, verifying and recording is still how we work. Thirty technical and administrative staff run assignments from the corporate office in Purana Paltan, with field surveyors covering the whole country.</p>
-            <a href="/about/" class="mt-6 inline-flex items-center gap-2 label-mono text-white hover:text-slate-3">Our history <Icon name="arrow-right" size={12} /></a>
+            <a href="/about/" class="mt-6 inline-flex items-center gap-2 label-mono text-white hover:text-brown-light">Our history <Icon name="arrow-right" size={12} /></a>
           </div>
         </div>
       </div>
@@ -178,7 +178,7 @@ const steps = [
       <div class="mt-14">
         <LogoWall clients={featuredClients} />
       </div>
-      <p class="mt-8 text-center"><a href="/clients/" class="inline-flex items-center gap-2 label-mono-dark hover:text-wine">All clients <Icon name="arrow-right" size={12} /></a></p>
+      <p class="mt-8 text-center"><a href="/clients/" class="inline-flex items-center gap-2 label-mono-dark hover:text-brown-deep">All clients <Icon name="arrow-right" size={12} /></a></p>
     </div>
   </section>
 
@@ -186,7 +186,7 @@ const steps = [
 </Base>
 
 <style>
-  .hero-plate { z-index: 0; background: #272624; }
+  .hero-plate { z-index: 0; background: #292221; }
   .hero-plate-img {
     background: url("/images/hero-aerial.jpg") center 40% / cover no-repeat;
     transform-origin: 50% 40%;

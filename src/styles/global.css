@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 /* Self-hosted fonts.
-   Headings: Fanwood Text (Newsreader as fallback), regular weight, tight
-   tracking, taken from the Paperless site's heading style.
+   Headings and the wordmark: Times New Roman, as in JOP's official
+   correspondence. Macs and Windows PCs use the installed Times New Roman;
+   everything else (Android, Linux) gets Tinos, its metric-compatible twin,
+   so line breaks are identical everywhere.
    Body: Gilroy is the target face. It is commercial, so Outfit
    (the closest free geometric) ships by default. To switch to Gilroy, drop the
    licensed woff2 files into public/fonts/ and uncomment the @font-face block
@@ -10,36 +12,37 @@
    Labels, numbers and the Bengali line follow the same family; Bengali
    glyphs come from Noto Sans Bengali. */
 @import "./gilroy.css";
-@import "@fontsource/fanwood-text/400.css";
-@import "@fontsource/fanwood-text/400-italic.css";
-@import "@fontsource-variable/newsreader/opsz.css";
+@import "@fontsource/tinos/400.css";
+@import "@fontsource/tinos/400-italic.css";
+@import "@fontsource/tinos/700.css";
 @import "@fontsource-variable/outfit";
 @import "@fontsource-variable/noto-sans-bengali";
 
 /* ---------------------------------------------------------------
-   Tokens, sampled from the Paperless identity boards
+   JOP palette. Built on the firm's own brown, #A67970, the colour of
+   the original joripbd.com navigation bar and the square in the logo.
+   Navy #3D506D is the original site's second colour, kept as the
+   counterpoint. Dark grounds are espresso, light grounds a warm paper.
    --------------------------------------------------------------- */
 @theme {
-  --color-charcoal: #272624;
-  --color-charcoal-2: #1F1E1C;
-  --color-charcoal-3: #33322F;
-  --color-paper: #DCE3E8;
-  --color-paper-2: #E8EEF2;
-  --color-wine: #8C2B4C;
-  --color-wine-2: #6E2039;
-  --color-wine-light: #C9587B;
-  --color-slate: #5A6F8A;
-  --color-slate-2: #415469;
-  --color-slate-3: #7E93AE;
-  --color-navy: #3A4468;
-  --color-ochre: #BFA24A;
-  --color-ink: #272624;
-  --color-ink-2: #4A4F57;
-  --color-muted: #737A85;
-  --color-line: #C3CCD4;
-  --color-line-2: #D3DBE1;
+  --color-espresso: #292221;
+  --color-espresso-2: #211B1A;
+  --color-espresso-3: #392F2D;
+  --color-paper: #E9E1E0;
+  --color-paper-2: #F6F2F1;
+  --color-brown: #A67970;        /* JOP brown: ridges, large fills, highlights */
+  --color-brown-deep: #795149;   /* buttons and cards with white text (6.8:1) */
+  --color-brown-dark: #563934;   /* hovers, third card tone */
+  --color-brown-light: #D5B5AE;  /* labels and accents on dark grounds */
+  --color-navy: #3D506D;         /* JOP's second colour */
+  --color-navy-2: #2E3D55;
+  --color-ink: #292221;
+  --color-ink-2: #5F514E;
+  --color-muted: #766562;
+  --color-line: #D4C7C4;
+  --color-line-2: #DFD5D3;
 
-  --font-display: "Fanwood Text", "Newsreader Variable", Georgia, "Times New Roman", serif;
+  --font-display: "Times New Roman", Times, "Tinos", Georgia, serif;
   --font-sans: "Gilroy", "Outfit Variable", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Gilroy", "Outfit Variable", "Helvetica Neue", Arial, sans-serif;
   --font-bengali: "Gilroy", "Outfit Variable", "Noto Sans Bengali Variable", "Kalpurush", sans-serif;
@@ -63,14 +66,14 @@
   }
   h1, h2, h3, h4 {
     @apply font-display font-normal;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.015em;
     line-height: 1.1;
     text-wrap: balance;
   }
-  /* Anything set in the display face is regular weight with the same tracking */
-  .font-display { font-weight: 400; letter-spacing: -0.055em; }
-  ::selection { background: #8C2B4C; color: #fff; }
-  :focus-visible { outline: 2px solid #8C2B4C; outline-offset: 3px; }
+  /* Anything set in Times is regular weight with the same light tracking */
+  .font-display { font-weight: 400; letter-spacing: -0.015em; }
+  ::selection { background: #795149; color: #fff; }
+  :focus-visible { outline: 2px solid #795149; outline-offset: 3px; }
 }
 
 @utility container-site {
@@ -83,14 +86,14 @@
 @utility label-mono {
   @apply font-sans text-[10px] font-semibold uppercase leading-[1.5] tracking-[0.09em];
 }
-@utility label-mono-light { @apply label-mono text-slate-3; }
-@utility label-mono-dark  { @apply label-mono text-slate; }
+@utility label-mono-light { @apply label-mono text-brown-light; }
+@utility label-mono-dark  { @apply label-mono text-brown-deep; }
 
-/* Display sizes from the board: 72 / 64 / 56 / 48 */
-@utility display-1 { @apply font-display font-normal leading-[1.02] tracking-[-0.055em] text-[40px] md:text-[56px] lg:text-[66px]; }
-@utility display-2 { @apply font-display font-normal leading-[1.05] tracking-[-0.055em] text-[33px] md:text-[42px] lg:text-[48px]; }
-@utility display-3 { @apply font-display font-normal leading-[1.08] tracking-[-0.05em] text-[27px] md:text-[33px]; }
-@utility display-4 { @apply font-display font-normal leading-[1.1] tracking-[-0.05em] text-[21px] md:text-[24px]; }
+/* Display sizes, set in Times New Roman */
+@utility display-1 { @apply font-display font-normal leading-[1.04] tracking-[-0.02em] text-[40px] md:text-[56px] lg:text-[66px]; }
+@utility display-2 { @apply font-display font-normal leading-[1.06] tracking-[-0.02em] text-[33px] md:text-[42px] lg:text-[48px]; }
+@utility display-3 { @apply font-display font-normal leading-[1.08] tracking-[-0.015em] text-[27px] md:text-[33px]; }
+@utility display-4 { @apply font-display font-normal leading-[1.1] tracking-[-0.01em] text-[21px] md:text-[24px]; }
 
 /* First section of a page runs up under the fixed glass header */
 @utility hero-under {
@@ -118,7 +121,7 @@
   & > * { position: relative; z-index: 1; }
 }
 
-/* Diagonal hatch, used on wine and slate fills */
+/* Diagonal hatch, used on brown and navy fills */
 @utility hatch {
   background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.11) 0 1px, transparent 1px 4px);
 }
@@ -128,7 +131,7 @@
 
 /* Faint dot grid on paper sections, from the product interface */
 @utility dotgrid {
-  background-image: radial-gradient(rgba(39,38,36,0.16) 1px, transparent 1.2px);
+  background-image: radial-gradient(rgba(86,57,52,0.17) 1px, transparent 1.2px);
   background-size: 22px 22px;
 }
 
@@ -159,12 +162,12 @@
 @utility btn {
   @apply inline-flex items-center justify-center gap-2 rounded-none px-5 py-3 text-[13px] font-semibold leading-none tracking-[-0.015em] whitespace-nowrap transition-colors;
 }
-@utility btn-wine   { @apply btn bg-wine text-white hover:bg-wine-2; }
-@utility btn-paper  { @apply btn bg-paper-2 text-charcoal hover:bg-white; }
+@utility btn-brown  { @apply btn bg-brown-deep text-white hover:bg-brown-dark; }
+@utility btn-paper  { @apply btn bg-paper-2 text-espresso hover:bg-white; }
 @utility btn-ghost-light { @apply btn border border-white/25 text-white hover:border-white/60 hover:bg-white/5; }
-@utility btn-ghost-dark  { @apply btn border border-charcoal/25 text-charcoal hover:border-charcoal hover:bg-white/50; }
+@utility btn-ghost-dark  { @apply btn border border-espresso/25 text-espresso hover:border-espresso hover:bg-white/50; }
 
-@utility link { @apply underline decoration-1 underline-offset-[4px] hover:text-wine; }
+@utility link { @apply underline decoration-1 underline-offset-[4px] hover:text-brown-deep; }
 
 /* Long-form text */
 @utility prose-jop {

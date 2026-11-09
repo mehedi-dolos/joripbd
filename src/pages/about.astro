@@ -23,19 +23,19 @@ const milestones = [
       <SectionHeading eyebrow="Independence" title="We report the value we find." />
       <div class="prose-jop mx-auto mt-8 max-w-[64ch] text-center text-[14.5px] text-ink-2">
         <p>Our task is to arrive at the present value of a property, or the true extent of a loss, without bias toward the party that appointed us or the party being assessed. We carry out every valuation, assessment and adjustment independently and without influence.</p>
-        <p>That is the whole reason an institution appoints an outside surveyor, and it is the standard we hold ourselves to. It is also the firm's slogan, unchanged since it was founded: <strong class="text-charcoal">we vouch for professionalism and honesty.</strong></p>
+        <p>That is the whole reason an institution appoints an outside surveyor, and it is the standard we hold ourselves to. It is also the firm's slogan, unchanged since it was founded: <strong class="text-espresso">we vouch for professionalism and honesty.</strong></p>
       </div>
     </div>
   </section>
 
   <!-- Founder -->
-  <section class="grain bg-charcoal text-white">
+  <section class="grain bg-espresso text-white">
     <div class="container-site grid gap-12 py-20 md:grid-cols-12 md:py-28">
       <div class="md:col-span-5">
-        <figure class="folder mt-4 overflow-hidden bg-charcoal-3">
+        <figure class="folder mt-4 overflow-hidden bg-espresso-3">
           <img src="/images/ataur-rahman.jpg" alt="Ataur Rahman, founder of Jorip O Paridarshan Company Limited" width="1200" height="1500" loading="lazy" class="block aspect-[4/5] w-full object-cover" />
           <figcaption class="px-5 py-4">
-            <span class="block font-display text-[17.5px] tracking-[-0.05em]">Ataur Rahman, 1941 to 2026</span>
+            <span class="block font-display text-[17.5px] tracking-[-0.01em]">Ataur Rahman, 1941 to 2026</span>
             <span class="mt-1 block label-mono text-white/55">Ekushey Padak 2001 · Independence Award 2021</span>
           </figcaption>
         </figure>
@@ -49,7 +49,7 @@ const milestones = [
         <ol class="mt-10 rounded-[12px] border border-white/15">
           {milestones.map((m, i) => (
             <li class={`grid gap-2 px-6 py-5 sm:grid-cols-12 sm:gap-6 ${i > 0 ? 'border-t border-dashed border-white/15' : ''}`}>
-              <span class="font-display text-[20.5px] leading-none tracking-[-0.05em] text-white sm:col-span-3">{m.year}</span>
+              <span class="font-display text-[20.5px] leading-none tracking-[-0.01em] text-white sm:col-span-3">{m.year}</span>
               <p class="text-[12.5px] leading-[1.6] text-white/65 sm:col-span-9">{m.text}</p>
             </li>
           ))}
@@ -65,8 +65,8 @@ const milestones = [
       <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {site.credentials.map((c) => (
           <div class="rounded-[12px] bg-white/70 p-7">
-            <span class="tile h-12 w-12 bg-wine text-white"><Icon name="badge" size={19} /></span>
-            <h3 class="mt-5 font-display text-[20.5px] leading-[1.1] tracking-[-0.05em] text-charcoal">{c.title}</h3>
+            <span class="tile h-12 w-12 bg-brown-deep text-white"><Icon name="badge" size={19} /></span>
+            <h3 class="mt-5 font-display text-[20.5px] leading-[1.1] tracking-[-0.01em] text-espresso">{c.title}</h3>
             <p class="mt-2 text-[12px] leading-[1.55] text-ink-2">{c.text}</p>
           </div>
         ))}
@@ -75,7 +75,7 @@ const milestones = [
   </section>
 
   <!-- The firm today -->
-  <section class="grain bg-charcoal text-white">
+  <section class="grain bg-espresso text-white">
     <div class="container-site grid gap-12 py-20 md:grid-cols-12 md:py-28">
       <div class="md:col-span-5">
         <SectionHeading eyebrow="The firm today" title="Thirty people, one office, the whole country." light align="left" />
@@ -88,7 +88,7 @@ const milestones = [
         <ul class="mt-5 grid gap-3 sm:grid-cols-2">
           {advisers.map((a) => (
             <li class="rounded-[12px] border border-white/15 p-5">
-              <p class="font-display text-[20px] leading-tight tracking-[-0.05em] text-white">{a.data.name}</p>
+              <p class="font-display text-[20px] leading-tight tracking-[-0.01em] text-white">{a.data.name}</p>
               <p class="mt-1 label-mono-light">{a.data.role}</p>
             </li>
           ))}
@@ -99,15 +99,15 @@ const milestones = [
             { src: '/images/about-site.jpg', alt: 'A surveyor behind a total station in front of a factory shed', t: 'On site', sub: 'Mawna, Gazipur' },
             { src: '/images/about-office.jpg', alt: 'An office desk with stacked folders, a stamped report and a typewriter', t: 'Report preparation', sub: 'Corporate office' },
           ].map((f) => (
-            <figure class="folder mt-3 overflow-hidden bg-charcoal-3 text-white">
+            <figure class="folder mt-3 overflow-hidden bg-espresso-3 text-white">
               <img src={f.src} alt={f.alt} loading="lazy" width="1200" height="896" class="block aspect-[4/3] w-full object-cover" />
-              <figcaption class="px-4 py-3.5"><span class="font-display text-[16px] tracking-[-0.05em]">{f.t}</span><span class="mt-0.5 block label-mono text-white/60">{f.sub}</span></figcaption>
+              <figcaption class="px-4 py-3.5"><span class="font-display text-[16px] tracking-[-0.01em]">{f.t}</span><span class="mt-0.5 block label-mono text-white/60">{f.sub}</span></figcaption>
             </figure>
           ))}
         </div>
         <div class="mt-8 flex flex-wrap gap-6">
-          <a href="/management/" class="inline-flex items-center gap-2 label-mono text-white hover:text-slate-3">The Board and management <Icon name="arrow-right" size={12} /></a>
-          <a href="/team/" class="inline-flex items-center gap-2 label-mono text-white hover:text-slate-3">The survey team <Icon name="arrow-right" size={12} /></a>
+          <a href="/management/" class="inline-flex items-center gap-2 label-mono text-white hover:text-brown-light">The Board and management <Icon name="arrow-right" size={12} /></a>
+          <a href="/team/" class="inline-flex items-center gap-2 label-mono text-white hover:text-brown-light">The survey team <Icon name="arrow-right" size={12} /></a>
         </div>
       </div>
     </div>
